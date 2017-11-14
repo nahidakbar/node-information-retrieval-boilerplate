@@ -1,0 +1,24 @@
+{
+  "name": "search-boilerplate",
+  "version": "0.0.0",
+  "description": "Various boilerplate stuff for making search systems easier.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jbn test",
+    "init": "jbn init -i babel",
+    "docs": "jbn docs",
+    "form": "jbn form",
+    "lint": "jbn lint",
+    "comp": "jbn comp",
+    "prepublishOnly": "jbn comp"
+  },
+  "author": "Nahid Akbar",
+  "license": "MIT",
+  "devDependencies": {
+    "jbn": "latest"
+  },
+  "repository" :
+    { "type" : "git"
+    , "url" : "https://github.com/nahidakbar/node-search-boilerplate.git"
+    }
+}
