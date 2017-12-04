@@ -1,0 +1,26 @@
+{
+  "name": "information-retrieval-boilerplate",
+  "version": "0.0.0",
+  "description": "Various boilerplate stuff for making information retieval systems easier to make.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jbn test",
+    "init": "jbn init",
+    "docs": "jbn docs",
+    "form": "jbn form",
+    "lint": "jbn lint"
+  },
+  "author": "Nahid Akbar",
+  "license": "MIT",
+  "devDependencies": {
+    "jbn": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"
+  },
+  "dependencies": {
+    "porter-stemmer": "^0.9.1",
+    "pos": "^0.4.2"
+  }
+}
