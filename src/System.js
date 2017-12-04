@@ -163,20 +163,6 @@ class System
   {
     if (query && query.filter)
     {
-      // if (query.filter.length !== undefined)
-      // {
-      //   if (query.filter.length > 1)
-      //   {
-      //     query.filter = {
-      //       filter: 'and',
-      //       values: query.filter
-      //     }
-      //   }
-      //   else
-      //   {
-      //     query.filter = query.filter[0];
-      //   }
-      // }
       return (await this.getResults(query.filter))
         .normalise(this);
     }
@@ -241,36 +227,6 @@ class System
   async filterResults(filter)
   {
     throw new Error('not implemented');
-  }
-
-  // /**
-  //  * @protected
-  //  */
-  // emptyResults()
-  // {
-  //   const empty = new Float32Array(this.ids.length);
-  //   empty.fill(0);
-  //   return empty;
-  // }
-
-
-  /**
-   * @protected
-   */
-  toObjectResults(results)
-  {
-    let output = [];
-    for (let resultIndex = 0; resultIndex < results.length; resultIndex++)
-    {
-      if (results[resultIndex] > 0)
-      {
-        output.push({
-          id: this.ids[resultIndex],
-          score: results[resultIndex]
-        });
-      }
-    }
-    return output;
   }
 
   /**

@@ -55,11 +55,19 @@ class TextIndex extends Index
         total[token] = total[token] || 0;
         total[token]++;
       }
-      return total;
+      values = tokens.map(token => token[2])
+        .join(' ');
+      return {
+        values,
+        total
+      };
     }
     else
     {
-      return {};
+      return {
+        values: '',
+        total: {}
+      };
     }
   }
 
@@ -75,7 +83,7 @@ class TextIndex extends Index
      */
     documentIndices.forEach((documentIndex, valuesOffset) =>
     {
-      let value = documentsValues[valuesOffset];
+      let value = documentsValues[valuesOffset].total;
       for (let kw of Object.entries(value))
       {
         const term = kw[0];
@@ -98,8 +106,9 @@ class TextIndex extends Index
     documentIndices.forEach((documentIndex, valuesOffset) =>
     {
       let value = documentsValues[valuesOffset];
-      if (value)
+      if (value && value.total)
       {
+        value = value.total;
         for (let kw of Object.entries(value))
         {
           const term = kw[0];
@@ -116,15 +125,18 @@ class TextIndex extends Index
     switch (filter.filter)
     {
     case 'query':
-      return this.filterQueryImpl(index, filter, results);
+      return this.filterQueryImpl(index, filter, results, false);
+    case 'queryexact':
+      return this.filterQueryImpl(index, filter, results, true);
     }
     return results;
   }
 
-  filterQueryImpl(index, filter, results)
+  filterQueryImpl(index, filter, results, exact)
   {
     let final = false;
-    for (let [keyword, tally] of Object.entries(this.analyseValue(filter.values.join(' '))))
+    const values = this.analyseValue(filter.values.join(' '));
+    for (let [keyword, tally] of Object.entries(values.total))
     {
       let resultFragment = index[keyword];
       if (resultFragment && resultFragment.total > 0)
@@ -143,7 +155,7 @@ class TextIndex extends Index
         }
         else
         {
-          for (let result of final)
+          for (let result in final)
           {
             if (!(result in resultFragment))
             {
@@ -166,8 +178,27 @@ class TextIndex extends Index
     }
     if (final)
     {
-      for (const [result, resultTally] of Object.entries(final))
+      if (exact)
       {
+        exact = new RegExp(values.values, 'ig')
+      }
+      for (let [result, resultTally] of Object.entries(final))
+      {
+        if (exact)
+        {
+          try
+          {
+            const match = this.values[result].values.match(exact);
+            if (match && match.length)
+            {
+              resultTally *= match.length
+            }
+          }
+          catch (e)
+          {
+
+          }
+        }
         if (resultTally > 0)
         {
           results.addHit(result, resultTally);

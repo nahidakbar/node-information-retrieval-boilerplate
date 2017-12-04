@@ -10,7 +10,7 @@ indexTester('text', {
     'finger lime',
     'pure bred',
     'ass',
-    'mary kisses asses of kings',
+    'Mary KISSES asses of kings',
     'assult on the titan',
     'assignments are boring',
     null,
@@ -23,5 +23,8 @@ indexTester('text', {
   }, {
     input: 'ass ment',
     output: []
+  }, {
+    input: '"mary kissing ass"',
+    output: [4]
   }]
 });

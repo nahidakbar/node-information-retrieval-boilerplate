@@ -251,6 +251,66 @@ describe(`System`, function ()
       "sort": 'sorta',
       "order": "dsc"
     }
+  }, {
+    config,
+    input: 'a and b and c',
+    output: {
+      "filter": {
+        "filter": "and",
+        "values": [{
+          "filter": "default",
+          "field": "text",
+          "values": [
+            "a"
+          ]
+        }, {
+          "filter": "default",
+          "field": "text",
+          "values": [
+            "b"
+          ]
+        }, {
+          "filter": "default",
+          "field": "text",
+          "values": [
+            "c"
+          ]
+        }]
+      },
+      "sort": false,
+      "order": "asc"
+    }
+  }, {
+    config,
+    input: 'acid:rain',
+    output: {
+      "filter": [],
+      "sort": false,
+      "order": "asc"
+    }
+  }, {
+    config,
+    input: 'text:acid:rain',
+    output: {
+      "filter": [],
+      "sort": false,
+      "order": "asc"
+    }
+  }, {
+    config,
+    input: '33.33',
+    output: {
+
+      "filter": {
+        "filter": "default",
+        "field": "text",
+        "values": [
+          "33.33"
+        ]
+      },
+      "sort": false,
+      "order": "asc"
+    }
   }];
 
   testCases.forEach((testCase, testCaseIndex) =>

@@ -18,7 +18,7 @@ class QueryParser
     this.sorts = this.sorts || [];
 
     // figure out a default field
-    if (!this.defaultField)
+    if (!this.fields[this.defaultField])
     {
       for (let [field, body] of Object.entries(this.fields))
       {
@@ -30,12 +30,17 @@ class QueryParser
       }
     }
     this.defaultField = this.defaultField || Object.keys(this.fields)[0];
-    if (!this.defaultField)
+    if (!this.fields[this.defaultField])
     {
       throw new Error('Could not determine default field');
     }
-    this.defaultFilter = this.fields[this.defaultField].filters[0];
+    const filters = this.fields[this.defaultField].filters;
+    this.defaultFilter = filters[0];
     this.defaultExactFilter = this.defaultFilter + 'exact';
+    if (filters.indexOf(this.defaultExactFilter) === -1)
+    {
+      this.defaultExactFilter = this.defaultFilter;
+    }
     this.defaultSort = this.defaultSort || false;
     this.defaultSortOrder = this.defaultSortOrder || 'asc';
   }

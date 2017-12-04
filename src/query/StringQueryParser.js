@@ -182,6 +182,7 @@ class StringQueryParser extends QueryParser
 
   parseJoinAllAndOrTokens(tokens)
   {
+    // console.log(1, JSON.stringify(tokens))
     for (let operator of ['and', 'or'])
     {
       for (let i = 0; i < tokens.length; i++)
@@ -190,18 +191,28 @@ class StringQueryParser extends QueryParser
         {
           if (i > 0 && i + 1 < tokens.length)
           {
-            tokens[i - 1] = [
-              [tokens[i - 1], tokens[i + 1]], operator
-            ];
-            tokens.splice(i, 2);
+            if (tokens[i - 1][1] === operator)
+            {
+              tokens[i - 1][0].push(tokens[i + 1]);
+            }
+            else
+            {
+              tokens[i - 1] = [
+                [tokens[i - 1], tokens[i + 1]], operator
+              ];
+            }
+            tokens.splice(i--, 2);
+            // console.log(2, JSON.stringify(tokens), i+1)
           }
-          else
+          else if (typeof tokens[i][0] === 'string')
           {
             tokens.splice(i--, 1);
+            // console.log(3, JSON.stringify(tokens))
           }
         }
       }
     }
+    // console.log(4, JSON.stringify(tokens))
   }
 
   /**
@@ -285,8 +296,6 @@ class StringQueryParser extends QueryParser
       return '"';
     case ':':
       return ':';
-    case '.':
-      return '.';
     case '-':
       return '-';
     default:

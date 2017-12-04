@@ -77,7 +77,7 @@ class Index
       name: this.name,
       type: this.type,
       fields: this.fields,
-      values: this.fields,
+      values: this.values,
       index: this.index,
       filters: this.filters,
       sorts: this.sorts,
