@@ -76,7 +76,7 @@ class Results
     for (const [index, score] of Object.entries(this.results))
     {
       results.push({
-        index: config.ids[index],
+        _index: index,
         [idField]: ids[index],
         score: score
       });

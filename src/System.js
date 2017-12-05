@@ -164,11 +164,80 @@ class System
   {
     if (query && query.filter)
     {
-      return (await this.getResults(query.filter))
+      const results = (await this.getResults(query.filter))
         .normalise(this);
+      this.postProcessResults(query, results);
+      return results;
     }
     return {};
   }
+
+  async postProcessResults(query, results)
+  {
+    try
+    {
+      let sort = query.sort ? query.sort : 'score';
+      // load sort value if not score
+      if (sort !== 'score')
+      {
+        try
+        {
+          const index = this.indicesLookup[sort][0];
+          results.results.forEach(result =>
+          {
+            result[sort] = index.getSortValue(result._index);
+          });
+        }
+        catch (e)
+        {
+          sort = 'score';
+        }
+      }
+      results.results.sort(this.sortFunction(sort, query.order));
+      results.results.forEach(result =>
+      {
+        result._index = undefined;
+      })
+    }
+    catch (e)
+    {
+      console.error(e.stack)
+    }
+  }
+
+  sortFunction(sort, sortOrder)
+  {
+    const idField = this.idField;
+    const order = sort === 'score' ? 1 : (sortOrder === 'asc' ? -1 : 1);
+    return (a, b) =>
+    {
+      const asort = a[sort],
+        bsort = b[sort];
+      if (asort === bsort)
+      {
+        // document ids are assumed to never be equal
+        // when sorts are equal, order by document ids
+        // they could mean something. e.g. file path or omething
+        if (a[idField] > b[idField])
+        {
+          return 1;
+        }
+        else
+        {
+          return -1;
+        }
+      }
+      else if (bsort > asort)
+      {
+        return order;
+      }
+      else
+      {
+        return -order;
+      }
+    };
+  }
+
   /**
    * @protected
    */

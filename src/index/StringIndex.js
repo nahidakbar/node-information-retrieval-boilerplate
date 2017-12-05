@@ -17,10 +17,12 @@ class StringIndex extends Index
   getDocumentValues(document)
   {
     const values = [];
-    extractObjectValues(document, this.fields, (value, field, scale) => {
+    extractObjectValues(document, this.fields, (value, field, scale) =>
+    {
       if (typeof value === 'string')
       {
-        values.push(decoder(value).toLowerCase());
+        values.push(decoder(value)
+          .toLowerCase());
       }
     });
     return values;

@@ -1,6 +1,7 @@
 "use strict";
 
 const QueryParser = require('./QueryParser');
+const decoder = require('unidecode');
 
 /**
  * Helper functionality for parsing query representes
@@ -31,7 +32,6 @@ class StringQueryParser extends QueryParser
   treeToFilters(fresh, tree)
   {
     let [values, filter] = tree, field;
-    // console.log('treeToFilters', filter, values);
     switch (filter)
     {
     case 'and':
@@ -182,7 +182,6 @@ class StringQueryParser extends QueryParser
 
   parseJoinAllAndOrTokens(tokens)
   {
-    // console.log(1, JSON.stringify(tokens))
     for (let operator of ['and', 'or'])
     {
       for (let i = 0; i < tokens.length; i++)
@@ -202,17 +201,14 @@ class StringQueryParser extends QueryParser
               ];
             }
             tokens.splice(i--, 2);
-            // console.log(2, JSON.stringify(tokens), i+1)
           }
           else if (typeof tokens[i][0] === 'string')
           {
             tokens.splice(i--, 1);
-            // console.log(3, JSON.stringify(tokens))
           }
         }
       }
     }
-    // console.log(4, JSON.stringify(tokens))
   }
 
   /**
@@ -220,7 +216,7 @@ class StringQueryParser extends QueryParser
    */
   * tokenise(string)
   {
-    for (let [char, class_] of this.tokenise2(string))
+    for (let [char, class_] of this.lemmatise(string))
     {
       switch (class_)
       {
@@ -243,25 +239,36 @@ class StringQueryParser extends QueryParser
         continue;
       case ' ':
         continue;
+      case '0':
+        yield [char, 'a'];
+        continue;
       }
       yield [char, class_];
     }
   }
 
-  * tokenise2(string)
+  * lemmatise(string)
   {
     let last = '';
     let lastClass = false;
-    for (let [char, class_] of this.lex(string))
+    let tokens = Array.from(this.lex(string));
+    for (let [char, class_] of tokens)
     {
       if (!lastClass)
       {
         [last, lastClass] = [char, class_];
       }
-      else if (lastClass !== class_)
+      else if (lastClass !== class_ && !(lastClass === 'a' && class_ === '0') && !(lastClass === '0' && char === 'e') && !(lastClass === '0' && char === '-'))
       {
-        yield [last, lastClass];
-        [last, lastClass] = [char, class_];
+        if (last === '-' && class_ === '0')
+        {
+          [last, lastClass] = [last + char, class_];
+        }
+        else
+        {
+          yield [last, lastClass];
+          [last, lastClass] = [char, class_];
+        }
       }
       else
       {
@@ -276,7 +283,7 @@ class StringQueryParser extends QueryParser
 
   * lex(string)
   {
-    for (let char of (string + '')
+    for (let char of decoder(string + '')
         .replace(/\s+/g, ' ')
         .trim())
     {
@@ -289,17 +296,30 @@ class StringQueryParser extends QueryParser
     switch (char)
     {
       // whitespace
-    case ' ':
-      return ' ';
     case '"':
     case "'":
+    case "(":
+    case ")":
+    case "[":
+    case "]":
       return '"';
     case ':':
       return ':';
     case '-':
       return '-';
     default:
-      return 'a'
+      if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z'))
+      {
+        return 'a'
+      }
+      else if ((char >= '0' && char <= '9') || (char === '.'))
+      {
+        return '0'
+      }
+      else
+      {
+        return ' ';
+      }
     }
   }
 

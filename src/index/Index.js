@@ -1,6 +1,5 @@
 "use strict";
 
-const extractObjectValues = require('../misc/extractObjectValues');
 const Results = require('../Results');
 
 /**

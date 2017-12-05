@@ -28,7 +28,7 @@ describe(`System`, function ()
   };
   const testCases = [{
     config,
-    input: '\n\nZM0G \t "keybo4rd" cat  is l33t\r\n💩  -poop ',
+    input: '\n\nZM0G \t "keybo4rd" cat  is l33t\r\n 💩 -poop ',
     output: {
       "filter": {
         "filter": "and",
@@ -52,8 +52,7 @@ describe(`System`, function ()
             "values": [
               "cat",
               "is",
-              "l33t",
-              "💩"
+              "l33t"
             ]
           }, {
             "filter": "not",
@@ -306,6 +305,21 @@ describe(`System`, function ()
         "field": "text",
         "values": [
           "33.33"
+        ]
+      },
+      "sort": false,
+      "order": "asc"
+    }
+  }, {
+    config,
+    input: '-33.33e-33',
+    output: {
+
+      "filter": {
+        "filter": "default",
+        "field": "text",
+        "values": [
+          "-33.33e-33"
         ]
       },
       "sort": false,

@@ -48,6 +48,7 @@ class TextIndex extends Index
   {
     if (valuesList)
     {
+      let count = 0;
       let total = {};
       let values = {};
       for (let [original, scale] of valuesList)
@@ -60,6 +61,7 @@ class TextIndex extends Index
           let token = value[2];
           total[token] = total[token] || 0;
           total[token] += scale;
+          count += scale;
         }
         values[tokens.map(token => token[2])
           .join(' ')] = 1;
@@ -68,14 +70,16 @@ class TextIndex extends Index
         .join(' ');
       return {
         values,
-        total
+        total,
+        count
       };
     }
     else
     {
       return {
         values: '',
-        total: {}
+        total: {},
+        count: 0
       };
     }
   }
@@ -92,16 +96,15 @@ class TextIndex extends Index
      */
     documentIndices.forEach((documentIndex, valuesOffset) =>
     {
-      let value = documentsValues[valuesOffset].total;
-      for (let kw of Object.entries(value))
+      const value = documentsValues[valuesOffset].total;
+      const count = documentsValues[valuesOffset].count;
+      for (const [term, tally] of Object.entries(value))
       {
-        const term = kw[0];
-        const tally = kw[1];
         index[term] = index[term] || {
           total: 0
         };
         index[term][documentIndex] = index[term][documentIndex] || 0;
-        index[term][documentIndex] += tally
+        index[term][documentIndex] += tally / count
         index[term].total += tally;
       }
     });
