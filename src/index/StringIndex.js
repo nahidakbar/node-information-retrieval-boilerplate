@@ -1,6 +1,8 @@
 "use strict";
 
 const Index = require('./Index');
+const extractObjectValues = require('../misc/extractObjectValues');
+const decoder = require('unidecode');
 
 const INDEX_TYPE = 'string';
 
@@ -10,6 +12,18 @@ class StringIndex extends Index
   {
     super(config, type || INDEX_TYPE);
     this.filters = ['match', 'exists'];
+  }
+
+  getDocumentValues(document)
+  {
+    const values = [];
+    extractObjectValues(document, this.fields, (value, field, scale) => {
+      if (typeof value === 'string')
+      {
+        values.push(decoder(value).toLowerCase());
+      }
+    });
+    return values;
   }
 
   createIndex()
@@ -67,6 +81,7 @@ class StringIndex extends Index
 
   filterMatchImpl(index, filter, results)
   {
+    filter.values = filter.values.map(value => value.toLowerCase())
     for (let resultIndex = 0; resultIndex < index.length; resultIndex++)
     {
       const values = index[resultIndex];

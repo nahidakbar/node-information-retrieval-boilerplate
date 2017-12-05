@@ -21,14 +21,17 @@ indexTester('string', {
     input: 'ass',
     output: [3, 4, 5, 6]
   }, {
+    input: 'ASS',
+    output: [3, 4, 5, 6]
+  }, {
     input: 'ass ment',
     output: [6]
   }, {
     input: 'exists:TRUE',
-    output: [1, 2, 3, 4, 5, 6, 8, 9]
+    output: [1, 2, 3, 4, 5, 6]
   }, {
     input: 'exists:false',
-    output: [0, 7],
+    output: [0, 7, 8, 9],
     false: true
   }]
 });

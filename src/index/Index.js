@@ -164,9 +164,7 @@ class Index
    */
   getDocumentValues(document)
   {
-    const values = [];
-    extractObjectValues(document, this.fields, (value, field, scale) => values.push(value));
-    return values;
+    throw new Error('Abstract')
   }
 
   /**
