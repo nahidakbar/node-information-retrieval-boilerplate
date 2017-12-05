@@ -9,18 +9,61 @@ class Results
   {
     // this[META] = {};
     // this[EXTRA] = {};
+    this.results = {};
   }
 
   addHit(index, hit)
   {
-    this[index] = (this[index] || 0) + hit;
+    this.results[index] = (this.results[index] || 0) + hit;
   }
 
   concat(results)
   {
-    for (let entry of Object.entries(results))
+    for (const [index, score] of Object.entries(results.results))
     {
-      this[entry[0]] = (this[entry[0]] || 0) + entry[1];
+      this.results[index] = (this.results[index] || 0) + score;
+    }
+    return this;
+  }
+
+  merge(results)
+  {
+    for (const index of Object.keys(this.results))
+    {
+      if (!results.results[index])
+      {
+        delete this.results[index];
+      }
+    }
+    for (const [index, score] of Object.entries(results.results))
+    {
+      if (this.results[index])
+      {
+        this.results[index] = this.results[index] * score;
+      }
+    }
+    return this;
+  }
+
+  invert(indices)
+  {
+    for (let index = 0; index < indices.length; index++)
+    {
+      if (indices[index] !== null)
+      {
+        if (this.results[index])
+        {
+          delete this.results[index]
+        }
+        else
+        {
+          this.results[index] = 1;
+        }
+      }
+      else
+      {
+        delete this.results[index]
+      }
     }
     return this;
   }
@@ -30,12 +73,12 @@ class Results
     const idField = config.idField;
     const ids = config.ids;
     const results = [];
-    for (let entry of Object.entries(this))
+    for (const [index, score] of Object.entries(this.results))
     {
       results.push({
-        index: config.ids[entry[0]],
-        [idField]: ids[entry[0]],
-        search: entry[1]
+        index: config.ids[index],
+        [idField]: ids[index],
+        score: score
       });
     }
     return {

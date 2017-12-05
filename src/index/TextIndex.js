@@ -49,7 +49,7 @@ class TextIndex extends Index
     if (valuesList)
     {
       let total = {};
-      let values = '';
+      let values = {};
       for (let [original, scale] of valuesList)
       {
         let tokens = this.tag(this.lex(decoder(original)
@@ -61,10 +61,11 @@ class TextIndex extends Index
           total[token] = total[token] || 0;
           total[token] += scale;
         }
-        values += ' ' + tokens.map(token => token[2])
-          .join(' ');
+        values[tokens.map(token => token[2])
+          .join(' ')] = 1;
       }
-      values = values.trim()
+      values = Object.keys(values)
+        .join(' ');
       return {
         values,
         total
