@@ -140,6 +140,7 @@ class System
     {
       await index.removeDocuments(documentIndices);
     }
+    this.helperRemoveIndices(documentIndices);
   }
 
   /**
@@ -200,9 +201,22 @@ class System
   /**
    * @protected
    */
-  async getAndResults(filter)
+  async getAndResults(values)
   {
-    throw new Error('not implemented');
+    let results = undefined;
+    for (let filter of values)
+    {
+      let filterResults = await this.getFilterResults(filter);
+      if (!results)
+      {
+        results = filterResults;
+      }
+      else
+      {
+        results = results.merge(filterResults);
+      }
+    }
+    return results;
   }
 
   /**
@@ -210,7 +224,13 @@ class System
    */
   async getOrResults(values)
   {
-    throw new Error('not implemented');
+    let results = new Results();
+    for (let filter of values)
+    {
+      let filterResults = await this.getFilterResults(filter);
+      results = results.concat(filterResults);
+    }
+    return results;
   }
 
   /**
@@ -218,15 +238,8 @@ class System
    */
   async getNotResults(filter)
   {
-    throw new Error('not implemented');
-  }
-
-  /**
-   * @protected
-   */
-  async filterResults(filter)
-  {
-    throw new Error('not implemented');
+    const results = await this.getFilterResults(filter);
+    return results.invert(this.ids);
   }
 
   /**
@@ -238,10 +251,26 @@ class System
     let lookup = this.idLookup[id];
     if (lookup === undefined)
     {
-      lookup = this.idLookup[id] = this.ids.length;
-      this.ids.push(id);
+      lookup = this.ids.indexOf(null);
+      if (lookup === -1)
+      {
+        lookup = this.ids.length;
+      }
+      this.idLookup[id] = lookup
+      this.ids[lookup] = id
     }
     return lookup;
+  }
+
+
+  helperRemoveIndices(indices)
+  {
+    indices.forEach(index =>
+    {
+      const id = this.ids[index];
+      delete this.idLookup[id];
+      this.ids[index] = null;
+    })
   }
 
   /**

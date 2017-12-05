@@ -49,7 +49,7 @@ describe(`extractObjectValues`, function ()
     it(`${JSON.stringify(testCase)}`, function ()
     {
       const values = [];
-      extractObjectValues(object, testCase.fields, values.push.bind(values));
+      extractObjectValues(object, testCase.fields, value => values.push(value));
       assert.deepEqual(values, testCase.output)
     })
   })

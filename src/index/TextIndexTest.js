@@ -26,5 +26,17 @@ indexTester('text', {
   }, {
     input: '"mary kissing ass"',
     output: [4]
+  }, {
+    input: 'pure or ass',
+    output: [2, 3, 4]
+  }, {
+    input: 'pure and ass',
+    output: []
+  }, {
+    input: 'king and mary',
+    output: [4]
+  }, {
+    input: 'not ass',
+    output: [0, 1, 2, 5, 6, 7, 8, 9]
   }]
 });
