@@ -2,6 +2,7 @@
 
 const Index = require('./Index');
 const extractObjectValues = require('../misc/extractObjectValues');
+const decoder = require('unidecode');
 const Lexer = require('pos')
   .Lexer;
 const Tagger = require('pos')
@@ -17,6 +18,7 @@ class TextIndex extends Index
   {
     super(config, type || INDEX_TYPE);
     this.filters = ['query', 'queryexact'];
+    this.decoder = decoder;
     this.lex = new Lexer();
     this.lex = this.lex.lex.bind(this.lex)
     this.tag = new Tagger();
@@ -27,36 +29,42 @@ class TextIndex extends Index
   getDocumentValues(document)
   {
     let values = [];
-    extractObjectValues(document, this.fields, newValue =>
+    extractObjectValues(document, this.fields, (newValue, field, scale) =>
     {
       if (typeof newValue === 'string')
       {
         newValue = newValue.replace(/\s+/g, ' ')
-          .replace(/(^\s+|\s+$)/g, '');
+          .trim();
         if (newValue)
         {
-          values.push(newValue);
+          values.push([newValue, scale]);
         }
       }
     });
-    return values.join('. ') || null;
+    return values.length && values || null;
   }
 
-  analyseValue(values)
+  analyseValue(valuesList)
   {
-    if (values)
+    if (valuesList)
     {
-      let tokens = this.tag(this.lex(values.toLowerCase()));
-      tokens.forEach(token => token.push(this.stem(token[0])))
       let total = {};
-      for (let value of tokens)
+      let values = '';
+      for (let [original, scale] of valuesList)
       {
-        let token = value[2];
-        total[token] = total[token] || 0;
-        total[token]++;
+        let tokens = this.tag(this.lex(decoder(original)
+          .toLowerCase()));
+        tokens.forEach(token => token.push(this.stem(token[0])))
+        for (let value of tokens)
+        {
+          let token = value[2];
+          total[token] = total[token] || 0;
+          total[token] += scale;
+        }
+        values += ' ' + tokens.map(token => token[2])
+          .join(' ');
       }
-      values = tokens.map(token => token[2])
-        .join(' ');
+      values = values.trim()
       return {
         values,
         total
@@ -135,7 +143,9 @@ class TextIndex extends Index
   filterQueryImpl(index, filter, results, exact)
   {
     let final = false;
-    const values = this.analyseValue(filter.values.join(' '));
+    const values = this.analyseValue([
+      [filter.values.join(' '), 1]
+    ]);
     for (let [keyword, tally] of Object.entries(values.total))
     {
       let resultFragment = index[keyword];

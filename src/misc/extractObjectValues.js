@@ -1,6 +1,6 @@
 "use strict";
 
-function extractAllValues(callback, value)
+function extractAllValues(callback, value, field, scale)
 {
   let type = typeof value;
   if (type === 'undefined' || value === null)
@@ -13,7 +13,7 @@ function extractAllValues(callback, value)
     {
       for (let part of value)
       {
-        extractAllValues(callback, part);
+        extractAllValues(callback, part, field, scale);
       }
       return;
     }
@@ -21,19 +21,19 @@ function extractAllValues(callback, value)
     {
       for (let part of Object.values(value))
       {
-        extractAllValues(callback, part);
+        extractAllValues(callback, part, field, scale);
       }
       return
     }
   }
-  callback(value);
+  callback(value, field, scale);
 }
 
-function extractFragmentValues(callback, document, fragment)
+function extractFragmentValues(callback, document, fragment, field, scale)
 {
   if (fragment.length === 0)
   {
-    return extractAllValues(callback, document);
+    return extractAllValues(callback, document, field, scale);
   }
   let top = fragment.splice(0, 1)[0];
   if (!document)
@@ -46,20 +46,32 @@ function extractFragmentValues(callback, document, fragment)
   {
     for (let part of value)
     {
-      extractFragmentValues(callback, part, fragment.slice());
+      extractFragmentValues(callback, part, fragment.slice(), field, scale);
     }
     return;
   }
-  return extractFragmentValues(callback, value, fragment);
+  return extractFragmentValues(callback, value, fragment, field, scale);
 }
 
 function extractObjectValues(document, fields, callback)
 {
-  for (let field of fields)
+  if (Array.isArray(fields))
   {
-    extractFragmentValues(callback, document, field.split('.')
-      .filter(x => x !== ''));
+    for (let field of fields)
+    {
+      extractFragmentValues(callback, document, field.split('.')
+        .filter(x => x !== ''), field, 1);
+    }
   }
+  else
+  {
+    for (let [field, scale] of Object.entries(fields))
+    {
+      extractFragmentValues(callback, document, field.split('.')
+        .filter(x => x !== ''), field, scale);
+    }
+  }
+
 }
 
 module.exports = extractObjectValues;

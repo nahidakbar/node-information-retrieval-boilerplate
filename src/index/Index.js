@@ -165,7 +165,7 @@ class Index
   getDocumentValues(document)
   {
     const values = [];
-    extractObjectValues(document, this.fields, values.push.bind(values));
+    extractObjectValues(document, this.fields, (value, field, scale) => values.push(value));
     return values;
   }
 

@@ -32,6 +32,18 @@ function tester(typeName, config)
   {
     let system;
     let parser;
+
+    function test(testcase)
+    {
+      return async function ()
+      {
+        let query = parser.parse(testcase.input);
+        let results = (await system.retrieveDocuments(query));
+        results = results.results.map(item => parseInt(item.id));
+        assert.deepEqual(results, testcase.output)
+      }
+    }
+
     beforeEach(async function ()
     {
       system = new System();
@@ -51,49 +63,47 @@ function tester(typeName, config)
       parser = new StringQueryParser(system.meta())
     })
 
-    it(`make sure records can be added and found`, async function ()
+    describe(`make sure records can be added and found`, function ()
     {
-      for (let testcase of config.tests)
+      config.tests.forEach(testcase =>
       {
-        let query = parser.parse(testcase.input);
-        let results = (await system.retrieveDocuments(query));
-        results = results.results.map(item => parseInt(item.id));
-        assert.deepEqual(results, testcase.output)
-      }
+        it(`${JSON.stringify(testcase.input)}`, test(testcase));
+      })
     });
 
-    it(`make sure records can be removed`, async function ()
+    describe(`make sure records can be removed`, function ()
     {
-      await system.removeDocuments(config.values.map((value, id) =>
+      beforeEach(async function ()
       {
-        return {
-          id: id,
-        };
-      }));
-
-      for (let testcase of config.tests)
-      {
-        if (testcase.false)
+        await system.removeDocuments(config.values.map((value, id) =>
         {
-          continue
+          return {
+            id: id,
+          };
+        }));
+      })
+
+      config.tests.forEach(testcase =>
+      {
+        if (!testcase.false)
+        {
+          it(`${JSON.stringify(testcase.input)}`, test(Object.assign({}, testcase, {
+            output: []
+          })));
         }
-        const results = (await system.retrieveDocuments(parser.parse(testcase.input)))
-          .results
-          .map(item => parseInt(item.id));
-        assert.deepEqual(results, [])
-      }
+      })
     });
 
-    it(`make sure index can be serialised`, async function ()
+    describe(`make sure index can be serialised`, async function ()
     {
-      system = new System(await system.state());
-      for (let testcase of config.tests)
+      beforeEach(async function ()
       {
-        let results = (await system.retrieveDocuments(parser.parse(testcase.input)))
-          .results
-          .map(item => parseInt(item.id));
-        assert.deepEqual(results, testcase.output)
-      }
+        system = new System(await system.state());
+      });
+      config.tests.forEach(testcase =>
+      {
+        it(`${JSON.stringify(testcase.input)}`, test(testcase));
+      })
     })
   });
 
