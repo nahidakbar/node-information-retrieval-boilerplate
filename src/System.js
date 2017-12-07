@@ -1,7 +1,7 @@
 "use strict";
 
 const indicesRegister = require('./index/register');
-const processorRegister = require('./processor/register');
+const processorRegister = require('./processors/register');
 const Results = require('./Results');
 
 /**

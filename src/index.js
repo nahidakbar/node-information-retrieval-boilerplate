@@ -7,7 +7,8 @@ require('./index/NumberIndex');
 require('./index/StringIndex');
 require('./index/TextIndex');
 
-module.exports.processor = require('./processor/register');
+module.exports.processors = require('./processors/register');
+require('./processors/Sorter');
 
 module.exports.System = require('./System');
 
