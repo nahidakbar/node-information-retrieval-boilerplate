@@ -37,18 +37,21 @@ describe(`System`, function ()
           {
             "filter": "default",
             "field": "text",
+            "index": 0,
             "values": [
               "ZM0G"
             ]
           }, {
             "filter": "defaultexact",
             "field": "text",
+            "index": 1,
             "values": [
               "keybo4rd"
             ]
           }, {
             "filter": "default",
             "field": "text",
+            "index": 2,
             "values": [
               "cat",
               "is",
@@ -59,6 +62,7 @@ describe(`System`, function ()
             "values": {
               "filter": "default",
               "field": "text",
+              "index": 3,
               "values": [
                 "poop"
               ]
@@ -82,6 +86,7 @@ describe(`System`, function ()
             "values": {
               "filter": "default",
               "field": "text",
+              "index": 0,
               "values": [
                 "A"
               ]
@@ -89,6 +94,7 @@ describe(`System`, function ()
           }, {
             "filter": "default",
             "field": "text",
+            "index": 1,
             "values": [
               "B"
             ]
@@ -96,6 +102,7 @@ describe(`System`, function ()
         }, {
           "filter": "default",
           "field": "text",
+          "index": 2,
           "values": [
             "C"
           ]
@@ -111,6 +118,7 @@ describe(`System`, function ()
       "filter": {
         "filter": "ncustom",
         "field": "nonText",
+        "index": 0,
         "values": [
           "xxx"
         ]
@@ -125,6 +133,7 @@ describe(`System`, function ()
       "filter": {
         "filter": "ndefault",
         "field": "nonText",
+        "index": 0,
         "values": [
           "xxx"
         ]
@@ -141,6 +150,7 @@ describe(`System`, function ()
         "values": {
           "filter": "ndefault",
           "field": "nonText",
+          "index": 0,
           "values": [
             "xxx"
           ]
@@ -172,6 +182,7 @@ describe(`System`, function ()
       "filter": {
         "field": "text",
         "filter": "default",
+        "index": 0,
         "values": [
           "X"
         ]
@@ -186,6 +197,7 @@ describe(`System`, function ()
       "filter": {
         "field": "text",
         "filter": "default",
+        "index": 0,
         "values": [
           "X"
         ]
@@ -218,6 +230,7 @@ describe(`System`, function ()
         "values": {
           "filter": "default",
           "field": "text",
+          "index": 0,
           "values": [
             "X"
           ]
@@ -259,18 +272,21 @@ describe(`System`, function ()
         "values": [{
           "filter": "default",
           "field": "text",
+          "index": 0,
           "values": [
             "a"
           ]
         }, {
           "filter": "default",
           "field": "text",
+          "index": 1,
           "values": [
             "b"
           ]
         }, {
           "filter": "default",
           "field": "text",
+          "index": 2,
           "values": [
             "c"
           ]
@@ -303,6 +319,7 @@ describe(`System`, function ()
       "filter": {
         "filter": "default",
         "field": "text",
+        "index": 0,
         "values": [
           "33.33"
         ]
@@ -318,6 +335,7 @@ describe(`System`, function ()
       "filter": {
         "filter": "default",
         "field": "text",
+        "index": 0,
         "values": [
           "-33.33e-33"
         ]

@@ -1,6 +1,6 @@
 "use strict";
 
-const indexTester = require('../indexTester');
+const indexTester = require('./indexTester');
 const TextIndex = require('./TextIndex');
 
 indexTester('text', {

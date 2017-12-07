@@ -1,6 +1,7 @@
 "use strict";
 
-const register = require('./index/register');
+const indicesRegister = require('./index/register');
+const processorRegister = require('./processor/register');
 const Results = require('./Results');
 
 /**
@@ -64,7 +65,7 @@ class System
     this.indices = (this.indices || [])
       .map(object =>
       {
-        object = new(register.lookup[object.type])(object);
+        object = new(indicesRegister.lookup[object.type])(object);
         if (object.name)
         {
           (this.indicesLookup[object.name] || (this.indicesLookup[object.name] = []))
@@ -74,6 +75,23 @@ class System
         {
           (this.indicesLookup[filter] || (this.indicesLookup[filter] = []))
           .push(object);
+        }
+        return object;
+      });
+
+    this.processorsLookup = {};
+    /**
+     * system processors
+     * @type {Processor[]}
+     */
+    this.processors = (this.processors || [])
+      .map(object =>
+      {
+        object = new(processorRegister.lookup[object.type])(object);
+        for (let bind of object.bind)
+        {
+          this.processorsLookup[bind] = this.processorsLookup[bind] || [];
+          this.processorsLookup[bind].push(object);
         }
         return object;
       });
@@ -88,7 +106,8 @@ class System
     return {
       idField: this.idField,
       ids: this.ids,
-      indices: await Promise.all(this.indices.map(index => index.state()))
+      indices: await Promise.all(this.indices.map(index => index.state())),
+      processors: await Promise.all(this.processors.map(processor => processor.state())),
     };
   }
 
@@ -112,6 +131,17 @@ class System
     return this;
   }
 
+  addProcessor(processor)
+  {
+    this.processors.push(processor);
+    for (let bind of processor.bind)
+    {
+      this.processorsLookup[bind] = this.processorsLookup[bind] || [];
+      this.processorsLookup[bind].push(processor);
+    }
+    return this;
+  }
+
   /**
    * Add a set of documents to the IR system.
    *
@@ -127,6 +157,10 @@ class System
     {
       await index.addDocuments(documentIndices, documents);
     }
+    for (let processor of (this.processorsLookup['add'] || []))
+    {
+      await processor.addDocuments(this, documentIndices, documents);
+    }
   }
 
   /**
@@ -139,6 +173,10 @@ class System
     for (let index of this.indices)
     {
       await index.removeDocuments(documentIndices);
+    }
+    for (let processor of (this.processorsLookup['remove'] || []))
+    {
+      await processor.removeDocuments(this, documentIndices);
     }
     this.helperRemoveIndices(documentIndices);
   }
@@ -164,78 +202,19 @@ class System
   {
     if (query && query.filter)
     {
+      for (let processor of (this.processorsLookup['query'] || []))
+      {
+        await processor.processQuery(this, query);
+      }
       const results = (await this.getResults(query.filter))
         .normalise(this);
-      this.postProcessResults(query, results);
+      for (let processor of (this.processorsLookup['results'] || []))
+      {
+        await processor.processResults(this, query, results);
+      }
       return results;
     }
     return {};
-  }
-
-  async postProcessResults(query, results)
-  {
-    try
-    {
-      let sort = query.sort ? query.sort : 'score';
-      // load sort value if not score
-      if (sort !== 'score')
-      {
-        try
-        {
-          const index = this.indicesLookup[sort][0];
-          results.results.forEach(result =>
-          {
-            result[sort] = index.getSortValue(result._index);
-          });
-        }
-        catch (e)
-        {
-          sort = 'score';
-        }
-      }
-      results.results.sort(this.sortFunction(sort, query.order));
-      results.results.forEach(result =>
-      {
-        result._index = undefined;
-      })
-    }
-    catch (e)
-    {
-      console.error(e.stack)
-    }
-  }
-
-  sortFunction(sort, sortOrder)
-  {
-    const idField = this.idField;
-    const order = sort === 'score' ? 1 : (sortOrder === 'asc' ? -1 : 1);
-    return (a, b) =>
-    {
-      const asort = a[sort],
-        bsort = b[sort];
-      if (asort === bsort)
-      {
-        // document ids are assumed to never be equal
-        // when sorts are equal, order by document ids
-        // they could mean something. e.g. file path or omething
-        if (a[idField] > b[idField])
-        {
-          return 1;
-        }
-        else
-        {
-          return -1;
-        }
-      }
-      else if (bsort > asort)
-      {
-        return order;
-      }
-      else
-      {
-        return -order;
-      }
-    };
   }
 
   /**

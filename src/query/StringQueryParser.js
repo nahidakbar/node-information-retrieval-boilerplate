@@ -14,9 +14,9 @@ class StringQueryParser extends QueryParser
     super(config);
   }
 
-  parse(query)
+  parse(query, maxTokns = 15)
   {
-    const tokens = Array.from(this.tokenise(query));
+    const tokens = Array.from(this.tokenise(query.substr(0, maxTokns * 10)));
 
     // lets try some bottom up parsing
     this.parseJoinAllExactMatchTokens(tokens);
@@ -25,18 +25,21 @@ class StringQueryParser extends QueryParser
     this.parseJoinAllRegularTokens(tokens);
     this.parseJoinAllAndOrTokens(tokens);
     const fresh = this.getDefault();
-    fresh.filter = this.treeToFilters(fresh, [tokens, 'and']) || [];
+    fresh.filter = this.treeToFilters(fresh, {
+      maxTokns
+    }, [tokens, 'and']) || [];
     return fresh;
   }
 
-  treeToFilters(fresh, tree)
+  treeToFilters(fresh, config, tree)
   {
-    let [values, filter] = tree, field;
+    config.tokenIndex = config.tokenIndex || 0;
+    let [values, filter] = tree, field, index;
     switch (filter)
     {
     case 'and':
     case 'or':
-      values = values.map(this.treeToFilters.bind(this, fresh))
+      values = values.map(this.treeToFilters.bind(this, fresh, config))
         .filter(x => x);
       if (values.length === 0)
       {
@@ -57,7 +60,7 @@ class StringQueryParser extends QueryParser
       if (values)
       {
         values.splice(2, 0, ...tree.slice(2))
-        values = this.treeToFilters(fresh, values);
+        values = this.treeToFilters(fresh, config, values);
         return {
           filter,
           values
@@ -97,12 +100,18 @@ class StringQueryParser extends QueryParser
         {
           return
         }
+        else if (config.tokenIndex > config.maxTokns)
+        {
+          return;
+        }
         else
         {
+          index = config.tokenIndex++;
           return {
             filter,
             field,
-            values
+            values,
+            index
           };
         }
       }

@@ -1,9 +1,9 @@
 "use strict";
 
 const assert = require('assert');
-const System = require('.')
+const System = require('..')
   .System;
-const StringQueryParser = require('.')
+const StringQueryParser = require('..')
   .StringQueryParser;
 
 function tester(typeName, config)

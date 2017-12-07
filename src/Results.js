@@ -7,8 +7,6 @@ class Results
 {
   constructor()
   {
-    // this[META] = {};
-    // this[EXTRA] = {};
     this.results = {};
   }
 
