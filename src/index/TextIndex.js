@@ -24,6 +24,17 @@ class TextIndex extends Index
     this.tag = new Tagger();
     this.tag = this.tag.tag.bind(this.tag);
     this.stem = stemmer;
+    this.length = config.length || 0;
+    this.maximum = config.maximum || 0;
+    this.sorts = [this.name];
+  }
+
+  async state()
+  {
+    return Object.assign(await super.state(), {
+      length: this.length,
+      maximum: this.maximum
+    });
   }
 
   getDocumentValues(document)
@@ -51,6 +62,7 @@ class TextIndex extends Index
       let count = 0;
       let total = {};
       let values = {};
+      let maximum = 0;
       for (let [original, scale] of valuesList)
       {
         let tokens = this.tag(this.lex(decoder(original)
@@ -62,6 +74,7 @@ class TextIndex extends Index
           total[token] = total[token] || 0;
           total[token] += scale;
           count += scale;
+          maximum = Math.max(total[token], maximum)
         }
         values[tokens.map(token => token[2])
           .join(' ')] = 1;
@@ -71,7 +84,8 @@ class TextIndex extends Index
       return {
         values,
         total,
-        count
+        count,
+        maximum
       };
     }
     else
@@ -104,10 +118,19 @@ class TextIndex extends Index
           total: 0
         };
         index[term][documentIndex] = index[term][documentIndex] || 0;
-        index[term][documentIndex] += tally / count
+        index[term][documentIndex] += tally
         index[term].total += tally;
       }
+      this.length += count;
     });
+
+    let maximum = 0;
+    for (const docs of Object.values(index))
+    {
+      maximum = Math.max(maximum, Object.keys(docs)
+        .length - 1);
+    }
+    this.maximum = maximum;
   }
 
   /**
@@ -132,30 +155,30 @@ class TextIndex extends Index
     });
   }
 
-  filterBasedOnIndex(index, filter, results)
+  filterBasedOnIndex(index, filter, results, score)
   {
     switch (filter.filter)
     {
     case 'query':
-      return this.filterQueryImpl(index, filter, results, false);
+      return this.filterQueryImpl(index, filter, results, score, false);
     case 'queryexact':
-      return this.filterQueryImpl(index, filter, results, true);
+      return this.filterQueryImpl(index, filter, results, score, true);
     }
     return results;
   }
 
-  filterQueryImpl(index, filter, results, exact)
+  filterQueryImpl(index, filter, results, score, exact)
   {
     let final = false;
     const values = this.analyseValue([
       [filter.values.join(' '), 1]
     ]);
-    for (let [keyword, tally] of Object.entries(values.total))
+    const all = Object.entries(values.total);
+    for (let [keyword, tally] of all)
     {
       let resultFragment = index[keyword];
       if (resultFragment && resultFragment.total > 0)
       {
-        let scale = tally / resultFragment.total;
         if (!final)
         {
           final = {};
@@ -163,7 +186,15 @@ class TextIndex extends Index
           {
             if (result !== 'total')
             {
-              final[result] = resultTally * scale;
+              const value = this.values[result];
+              final[result] = score(resultTally,
+                value.count,
+                value.maximum,
+                resultFragment.total,
+                this.length,
+                this.values.length,
+                all.length,
+                this.maximum) * tally;
             }
           }
         }
@@ -180,7 +211,15 @@ class TextIndex extends Index
           {
             if (result in final)
             {
-              final[result] *= resultTally * scale;
+              const value = this.values[result];
+              final[result] *= resultTally * score(resultTally,
+                value.count,
+                value.maximum,
+                resultFragment.total,
+                this.length,
+                this.values.length,
+                all.length,
+                this.maximum) * tally;
             }
           }
         }
@@ -221,6 +260,12 @@ class TextIndex extends Index
     }
     return results;
   }
+
+  getSortValue(index)
+  {
+    return this.values[index].values
+  }
+
 }
 
 module.exports = TextIndex;

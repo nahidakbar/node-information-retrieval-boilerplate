@@ -15,7 +15,7 @@ class QueryParser
     }
 
     this.fields = this.fields || {};
-    this.sorts = this.sorts || [];
+    this.sort = this.sort || [];
 
     // figure out a default field
     if (!this.fields[this.defaultField])

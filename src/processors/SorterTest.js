@@ -7,7 +7,7 @@ tester('sorter', {
   create: async(config) => new Processor(config),
   tests: [{
     input: 'robots',
-    output: [0, 2, 1]
+    output: [0, 2, 5, 1]
   }, {
     input: 'intelligent',
     output: [4]
@@ -16,6 +16,17 @@ tester('sorter', {
     output: []
   }, {
     input: 'chicken',
-    output: [2, 3]
+    output: [2, 3, 5]
+  }, {
+    input: 'robots sort:field order:dsc',
+    output: [1, 2, 5, 0]
   }]
+});
+
+describe('processor', function()
+{
+  it('should intialise', function()
+  {
+    new Processor();
+  });
 });

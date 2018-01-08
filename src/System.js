@@ -3,7 +3,7 @@
 const indicesRegister = require('./index/register');
 const processorRegister = require('./processors/register');
 const Results = require('./Results');
-
+const scores = require('./scores');
 /**
  * Information Retrieval System Main Class
  *
@@ -198,7 +198,7 @@ class System
    * @param {Query} query query
    * @return {Document[]} retrieve
    */
-  async retrieveDocuments(query)
+  async retrieveDocuments(query, score = scores.naiveBayes)
   {
     if (query && query.filter)
     {
@@ -206,7 +206,7 @@ class System
       {
         await processor.processQuery(this, query);
       }
-      const results = (await this.getResults(query.filter))
+      const results = (await this.getResults(query.filter, score))
         .normalise(this);
       for (let processor of (this.processorsLookup['results'] || []))
       {
@@ -220,27 +220,27 @@ class System
   /**
    * @protected
    */
-  async getResults(filter)
+  async getResults(filter, score)
   {
     switch (filter.filter)
     {
     case 'and':
-      return await this.getAndResults(filter.values);
+      return await this.getAndResults(filter.values, score);
     case 'or':
-      return await this.getOrResults(filter.values);
+      return await this.getOrResults(filter.values, score);
     case 'not':
-      return await this.getNotResults(filter.values);
+      return await this.getNotResults(filter.values, score);
     default:
-      return await this.getFilterResults(filter);
+      return await this.getFilterResults(filter, score);
     }
   }
 
-  async getFilterResults(filter)
+  async getFilterResults(filter, score)
   {
     let results = new Results();
     for (let index of (this.indicesLookup[filter.field || filter.filter] || []))
     {
-      const newResults = await index.filterDocuments(filter);
+      const newResults = await index.filterDocuments(filter, new Results(), score);
       results = results.concat(newResults);
     }
     return results;
@@ -249,12 +249,12 @@ class System
   /**
    * @protected
    */
-  async getAndResults(values)
+  async getAndResults(values, score)
   {
     let results = undefined;
     for (let filter of values)
     {
-      let filterResults = await this.getFilterResults(filter);
+      let filterResults = await this.getFilterResults(filter, score);
       if (!results)
       {
         results = filterResults;
@@ -270,12 +270,12 @@ class System
   /**
    * @protected
    */
-  async getOrResults(values)
+  async getOrResults(values, score)
   {
     let results = new Results();
     for (let filter of values)
     {
-      let filterResults = await this.getFilterResults(filter);
+      let filterResults = await this.getFilterResults(filter, score);
       results = results.concat(filterResults);
     }
     return results;
@@ -284,9 +284,9 @@ class System
   /**
    * @protected
    */
-  async getNotResults(filter)
+  async getNotResults(filter, score)
   {
-    const results = await this.getFilterResults(filter);
+    const results = await this.getFilterResults(filter, score);
     return results.invert(this.ids);
   }
 

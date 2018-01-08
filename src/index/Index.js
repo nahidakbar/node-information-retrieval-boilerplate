@@ -112,9 +112,9 @@ class Index
    * @param {QueryFilter} queryFilter query to filter with
    * @param {Results} results results to filter (modify results object)
    */
-  filterDocuments(queryFilter, results = new Results())
+  filterDocuments(queryFilter, results = new Results(), score)
   {
-    return this.filterBasedOnIndex(this.index, queryFilter, results);
+    return this.filterBasedOnIndex(this.index, queryFilter, results, score);
   }
 
   /**
@@ -146,7 +146,7 @@ class Index
     let documentsValues = documents.map(this.getDocumentValues.bind(this));
     let analysed = await this.analyseValues(documentsValues);
     await this.addToIndex(this.index, documentIndices, analysed);
-    documentIndices.forEach(index => this.values[index] = analysed[index]);
+    documentIndices.forEach((index, i) => this.values[index] = analysed[i]);
   }
 
   /**

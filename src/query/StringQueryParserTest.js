@@ -22,7 +22,7 @@ describe(`System`, function ()
         ]
       }
     },
-    sorts: [
+    sort: [
       'sorta'
     ]
   };

@@ -13,3 +13,5 @@ require('./processors/Sorter');
 module.exports.System = require('./System');
 
 module.exports.StringQueryParser = require('./query/StringQueryParser');
+
+module.exports.scores = require('./scores');

@@ -29,6 +29,7 @@ class Sorter extends Processor
         }
         catch (e)
         {
+          console.log(e.stack)
           sort = 'score';
         }
       }

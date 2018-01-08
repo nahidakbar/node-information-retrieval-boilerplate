@@ -13,7 +13,8 @@ const documents = [
   'robots on a plane',
   'robot chicken',
   'hienies chicken',
-  'artificial intelligence'
+  'artificial intelligence',
+  'robot chicken',
 ];
 
 function tester(typeName, config)
@@ -91,58 +92,8 @@ function tester(typeName, config)
           it(`${JSON.stringify(testcase.input)}`, test(testcase));
         })
       });
-
     });
-
-
   });
-
-  // describe(`${typeName} with records`, async function ()
-  // {
-  //   describe(`make sure records can be added and found`, function ()
-  //   {
-  //     config.tests.forEach(testcase =>
-  //     {
-  //       it(`${JSON.stringify(testcase.input)}`, test(testcase));
-  //     })
-  //   });
-  //
-  //   describe(`make sure records can be removed`, function ()
-  //   {
-  //     beforeEach(async function ()
-  //     {
-  //       await system.removeDocuments(config.values.map((value, id) =>
-  //       {
-  //         return {
-  //           id: id,
-  //         };
-  //       }));
-  //     })
-  //
-  //     config.tests.forEach(testcase =>
-  //     {
-  //       if (!testcase.false)
-  //       {
-  //         it(`${JSON.stringify(testcase.input)}`, test(Object.assign({}, testcase, {
-  //           output: []
-  //         })));
-  //       }
-  //     })
-  //   });
-  //
-  //   describe(`make sure index can be serialised`, async function ()
-  //   {
-  //     beforeEach(async function ()
-  //     {
-  //       system = new System(await system.state());
-  //     });
-  //     config.tests.forEach(testcase =>
-  //     {
-  //       it(`${JSON.stringify(testcase.input)}`, test(testcase));
-  //     })
-  //   })
-  // });
-
 }
 
 module.exports = tester;

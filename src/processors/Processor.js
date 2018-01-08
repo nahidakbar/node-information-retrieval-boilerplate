@@ -26,7 +26,7 @@ class Processor
      */
     this.type = this.type || type;
     this.bind = this.bind || bind;
-    if (!this.type || !this.bind)
+    if (!this.type || !this.bind || this.bind.length === 0)
     {
       throw new Error('Type or bind not specified');
     }
@@ -49,25 +49,33 @@ class Processor
    * for classes with bind 'add'
    */
   async addDocuments(system, documentIndices, documents)
-  {}
+  {
+    throw new Error('abstract method not implemented');
+  }
 
   /**
    * for classes with bind 'remove'
    */
   async removeDocuments(system, documentIndices)
-  {}
+  {
+    throw new Error('abstract method not implemented');
+  }
 
   /**
    * for classes with bind 'query'
    */
   async processQuery(system, query)
-  {}
+  {
+    throw new Error('abstract method not implemented');
+  }
 
   /**
    * for classes with bind 'results'
    */
   async processResults(system, query, results)
-  {}
+  {
+    throw new Error('abstract method not implemented');
+  }
 
 }
 

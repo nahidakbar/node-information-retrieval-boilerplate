@@ -77,7 +77,7 @@ class StringQueryParser extends QueryParser
       values = values.split(' ');
       if (field === 'sort')
       {
-        fresh.sort = this.sorts.indexOf(values[0]) === -1 ? fresh.sort : values[0];
+        fresh.sort = this.sort.indexOf(values[0]) === -1 ? fresh.sort : values[0];
         return;
       }
       else if (field === 'order')
