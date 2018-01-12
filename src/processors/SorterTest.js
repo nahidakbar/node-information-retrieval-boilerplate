@@ -23,9 +23,9 @@ tester('sorter', {
   }]
 });
 
-describe('processor', function()
+describe('processor', function ()
 {
-  it('should intialise', function()
+  it('should intialise', function ()
   {
     new Processor();
   });

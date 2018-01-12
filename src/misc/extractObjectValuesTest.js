@@ -37,7 +37,9 @@ describe(`extractObjectValues`, function ()
     fields: ['c.f.i'],
     output: [false]
   }, {
-    fields: {'z': 1},
+    fields: {
+      'z': 1
+    },
     output: []
   }, {
     fields: ['a.'],

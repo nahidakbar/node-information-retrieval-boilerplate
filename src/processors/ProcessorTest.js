@@ -3,16 +3,16 @@
 const Processor = require('./Processor');
 const assert = require('assert');
 
-describe('processor', function()
+describe('processor', function ()
 {
-  it('should require type', function()
+  it('should require type', function ()
   {
     assert.throws(() =>
     {
       new Processor();
     });
   });
-  it('should require bind', function()
+  it('should require bind', function ()
   {
     assert.throws(() =>
     {
@@ -21,12 +21,12 @@ describe('processor', function()
   });
 
   let processor;
-  beforeEach(function()
+  beforeEach(function ()
   {
     processor = new Processor({}, 'type', ['bind']);
   });
 
-  it('add is abstract', async function()
+  it('add is abstract', async function ()
   {
     try
     {
@@ -39,7 +39,7 @@ describe('processor', function()
     throw new Error('abstract method didnt throw error');
   });
 
-  it('results is abstract', async function()
+  it('results is abstract', async function ()
   {
     try
     {
@@ -52,7 +52,7 @@ describe('processor', function()
     throw new Error('abstract method didnt throw error');
   });
 
-  it('remove is abstract', async function()
+  it('remove is abstract', async function ()
   {
     try
     {
@@ -65,7 +65,7 @@ describe('processor', function()
     throw new Error('abstract method didnt throw error');
   });
 
-  it('query is abstract', async function()
+  it('query is abstract', async function ()
   {
     try
     {
