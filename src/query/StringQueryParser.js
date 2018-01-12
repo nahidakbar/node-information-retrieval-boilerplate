@@ -34,7 +34,7 @@ class StringQueryParser extends QueryParser
   treeToFilters(fresh, config, tree)
   {
     config.tokenIndex = config.tokenIndex || 0;
-    let [values, filter] = tree, field, index;
+    let [values, filter] = tree, field;
     switch (filter)
     {
     case 'and':
@@ -106,12 +106,11 @@ class StringQueryParser extends QueryParser
         }
         else
         {
-          index = config.tokenIndex++;
+          config.tokenIndex++;
           return {
             filter,
             field,
             values,
-            index
           };
         }
       }

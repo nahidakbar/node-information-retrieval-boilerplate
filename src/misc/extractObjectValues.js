@@ -53,6 +53,14 @@ function extractFragmentValues(callback, document, fragment, field, scale)
   return extractFragmentValues(callback, value, fragment, field, scale);
 }
 
+
+/**
+ * extract values from a document object
+ *
+ * @param  {object} document target document
+ * @param  {object} fields   array of fields or map of fields to score
+ * @param  {function} callback callback function will be called for each value
+ */
 function extractObjectValues(document, fields, callback)
 {
   if (Array.isArray(fields))
@@ -71,7 +79,6 @@ function extractObjectValues(document, fields, callback)
         .filter(x => x !== ''), field, scale);
     }
   }
-
 }
 
 module.exports = extractObjectValues;

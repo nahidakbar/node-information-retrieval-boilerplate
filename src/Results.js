@@ -1,12 +1,13 @@
 "use strict";
 
-// const META = Symbol.for('meta');
-// const EXTRA = Symbol.for('extra');
-
+/**
+ * Search Results
+ */
 class Results
 {
   constructor()
   {
+    this.keywords = [];
     this.results = {};
   }
 
@@ -15,12 +16,27 @@ class Results
     this.results[index] = (this.results[index] || 0) + hit;
   }
 
+  addKeyword(keyword, hits)
+  {
+    this.keywords.push({
+      keyword,
+      hits
+    });
+  }
+
   concat(results)
   {
     for (const [index, score] of Object.entries(results.results))
     {
       this.results[index] = (this.results[index] || 0) + score;
     }
+    if (this.keywords.length)
+    {
+      this.keywords.push({
+        keyword: 'or'
+      });
+    }
+    this.keywords = this.keywords.concat(results.keywords)
     return this;
   }
 
@@ -40,6 +56,13 @@ class Results
         this.results[index] = this.results[index] * score;
       }
     }
+    if (this.keywords.length)
+    {
+      this.keywords.push({
+        keyword: 'and'
+      });
+    }
+    this.keywords = this.keywords.concat(results.keywords)
     return this;
   }
 
@@ -79,7 +102,9 @@ class Results
         score: score
       });
     }
+    const keywords = this.keywords;
     return {
+      keywords,
       results
     };
   }

@@ -1,6 +1,6 @@
 {
   "name": "information-retrieval-boilerplate",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Various boilerplate stuff for making information retieval systems easier to make.",
   "main": "src/index.js",
   "scripts": {

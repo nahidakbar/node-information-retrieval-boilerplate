@@ -11,6 +11,4 @@ describe(`System`, function ()
   {
     system = new System();
   });
-
-
 });

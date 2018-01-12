@@ -14,8 +14,8 @@ async function evaluate(system, parser, expected)
   const actual = {};
   for (const query of Object.keys(expected))
   {
-    actual[query] = (await system.retrieveDocuments(parser.parse(query)))
-      .results.map(x => x.id);
+    actual[query] = (await system.retrieveDocuments(parser.parse(query)));
+    actual[query] = actual[query].results.map(x => x.id);
   }
 
   let count = Object.keys(expected)

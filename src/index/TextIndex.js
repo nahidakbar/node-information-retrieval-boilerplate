@@ -27,13 +27,15 @@ class TextIndex extends Index
     this.length = config.length || 0;
     this.maximum = config.maximum || 0;
     this.sorts = [this.name];
+    this.allowPartial = this.allowPartial || false;
   }
 
   async state()
   {
     return Object.assign(await super.state(), {
       length: this.length,
-      maximum: this.maximum
+      maximum: this.maximum,
+      allowPartial: this.allowPartial
     });
   }
 
@@ -167,68 +169,75 @@ class TextIndex extends Index
     return results;
   }
 
+
   filterQueryImpl(index, filter, results, score, exact)
   {
     let final = false;
     const values = this.analyseValue([
       [filter.values.join(' '), 1]
     ]);
-    const all = Object.entries(values.total);
-    for (let [keyword, tally] of all)
-    {
-      let resultFragment = index[keyword];
-      if (resultFragment && resultFragment.total > 0)
+    Object.entries(values.total)
+      .map((keywordTally, keywordIndex, all) =>
       {
-        if (!final)
+        const [keyword, tally] = keywordTally;
+        let resultFragment = index[keyword];
+        if (resultFragment && resultFragment.total > 0)
         {
-          final = {};
-          for (const [result, resultTally] of Object.entries(resultFragment))
+          results.addKeyword(filter.values[keywordIndex], resultFragment.total);
+          if (!final)
           {
-            if (result !== 'total')
+            final = {};
+            for (const [result, resultTally] of Object.entries(resultFragment))
             {
-              const value = this.values[result];
-              final[result] = score(resultTally,
-                value.count,
-                value.maximum,
-                resultFragment.total,
-                this.length,
-                this.values.length,
-                all.length,
-                this.maximum) * tally;
+              if (result !== 'total')
+              {
+                const value = this.values[result];
+                final[result] = score(resultTally,
+                  value.count,
+                  value.maximum,
+                  resultFragment.total,
+                  this.length,
+                  this.values.length,
+                  all.length,
+                  this.maximum) * tally;
+              }
+            }
+          }
+          else
+          {
+            for (let result in final)
+            {
+              if (!(result in resultFragment))
+              {
+                final[result] = undefined;
+              }
+            }
+            for (const [result, resultTally] of Object.entries(resultFragment))
+            {
+              if (result in final)
+              {
+                const value = this.values[result];
+                final[result] *= score(resultTally,
+                  value.count,
+                  value.maximum,
+                  resultFragment.total,
+                  this.length,
+                  this.values.length,
+                  all.length,
+                  this.maximum) * tally;
+              }
             }
           }
         }
         else
         {
-          for (let result in final)
+          results.addKeyword(filter.values[keywordIndex], 0);
+          if (!this.allowPartial)
           {
-            if (!(result in resultFragment))
-            {
-              final[result] = undefined;
-            }
-          }
-          for (const [result, resultTally] of Object.entries(resultFragment))
-          {
-            if (result in final)
-            {
-              const value = this.values[result];
-              final[result] *= resultTally * score(resultTally,
-                value.count,
-                value.maximum,
-                resultFragment.total,
-                this.length,
-                this.values.length,
-                all.length,
-                this.maximum) * tally;
-            }
+            final = {};
           }
         }
-      }
-      else
-      {
-        return results;
-      }
-    }
+      });
     if (final)
     {
       if (exact)
@@ -258,7 +267,6 @@ class TextIndex extends Index
         }
       }
     }
-    return results;
   }
 
   getSortValue(index)

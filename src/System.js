@@ -240,7 +240,8 @@ class System
     let results = new Results();
     for (let index of (this.indicesLookup[filter.field || filter.filter] || []))
     {
-      const newResults = await index.filterDocuments(filter, new Results(), score);
+      const newResults = new Results();
+      await index.filterDocuments(filter, newResults, score);
       results = results.concat(newResults);
     }
     return results;
