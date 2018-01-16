@@ -255,7 +255,7 @@ class System
     let results = undefined;
     for (let filter of values)
     {
-      let filterResults = await this.getFilterResults(filter, score);
+      let filterResults = await this.getResults(filter, score);
       if (!results)
       {
         results = filterResults;
@@ -276,7 +276,7 @@ class System
     let results = new Results();
     for (let filter of values)
     {
-      let filterResults = await this.getFilterResults(filter, score);
+      let filterResults = await this.getResults(filter, score);
       results = results.concat(filterResults);
     }
     return results;

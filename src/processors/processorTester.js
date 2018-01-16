@@ -29,7 +29,7 @@ function tester(typeName, config)
         name: 'field',
         fields: ['field']
       }))
-      system.addProcessor(await config.create({}));
+      system.addProcessor(await config.create(config.config || {}));
     });
 
     describe('empty', function ()
@@ -69,7 +69,7 @@ function tester(typeName, config)
         {
           let query = parser.parse(testcase.input);
           let results = (await system.retrieveDocuments(query));
-          results = results.results.map(item => parseInt(item.id));
+          results = (config.output || (results => results.results.map(item => parseInt(item.id))))(results);
           assert.deepEqual(results, testcase.output)
         }
       }

@@ -8,6 +8,7 @@ require('./index/StringIndex');
 require('./index/TextIndex');
 
 module.exports.processors = require('./processors/register');
+require('./processors/AltQuerySuggester');
 require('./processors/Sorter');
 
 module.exports.System = require('./System');
