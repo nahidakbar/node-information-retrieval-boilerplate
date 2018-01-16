@@ -6,7 +6,7 @@ const ir = require('..');
 const TEST_CASES = {
   binary: [ir.scores.binary, 1],
   count: [ir.scores.count, 1],
-  tf: [ir.scores.termFrequency, 0.25],
+  tf: [ir.scores.termFrequency, 0.14285714285714285],
   ln: [ir.scores.logNormal, 1],
   normalised1: [ir.scores.augmented(0.5), 1],
   normalised2: [ir.scores.augmented(), 1],

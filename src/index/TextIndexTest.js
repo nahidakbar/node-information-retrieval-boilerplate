@@ -8,6 +8,7 @@ indexTester('text', {
   values: [
     '',
     'finger lime',
+    'lime finger',
     'pure bred',
     'ass',
     'Mary KISSES asses of kings',
@@ -19,24 +20,27 @@ indexTester('text', {
   ],
   tests: [{
     input: 'ass ass',
-    output: [3, 4]
+    output: [4, 5]
+  }, {
+    input: 'finger lime',
+    output: [1, 2]
   }, {
     input: 'ass ment',
     output: []
   }, {
     input: '"mary kissing ass"',
-    output: [4]
+    output: [5]
   }, {
     input: 'pure or ass',
-    output: [2, 3, 4]
+    output: [3, 4, 5]
   }, {
     input: 'pure and ass',
     output: []
   }, {
     input: 'king and mary',
-    output: [4]
+    output: [5]
   }, {
     input: 'not ass',
-    output: [0, 1, 2, 5, 6, 7, 8, 9]
+    output: [0, 1, 2, 3, 6, 7, 8, 9, 10]
   }]
 });

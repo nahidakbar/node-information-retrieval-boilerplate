@@ -40,6 +40,7 @@ function tester(typeName, config)
         let query = parser.parse(testcase.input);
         let results = (await system.retrieveDocuments(query));
         results = results.results.map(item => parseInt(item.id));
+
         assert.deepEqual(results, testcase.output)
       }
     }

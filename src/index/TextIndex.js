@@ -24,18 +24,18 @@ class TextIndex extends Index
     this.tag = new Tagger();
     this.tag = this.tag.tag.bind(this.tag);
     this.stem = stemmer;
-    this.length = config.length || 0;
-    this.maximum = config.maximum || 0;
+    this.totalWordsTally = config.totalWordsTally || 0;
+    this.maximumDocumentsByTerm = config.maximumDocumentsByTerm || 0;
     this.sorts = [this.name];
-    this.allowPartial = this.allowPartial || false;
+    this.allowPartialMatch = this.allowPartialMatch || false;
   }
 
   async state()
   {
     return Object.assign(await super.state(), {
-      length: this.length,
-      maximum: this.maximum,
-      allowPartial: this.allowPartial
+      totalWordsTally: this.totalWordsTally,
+      maximumDocumentsByTerm: this.maximumDocumentsByTerm,
+      allowPartialMatch: this.allowPartialMatch
     });
   }
 
@@ -62,8 +62,9 @@ class TextIndex extends Index
     if (valuesList)
     {
       let count = 0;
-      let total = {};
-      let values = {};
+      let words = {};
+      let bagOfWords = {};
+      let stemmedFull = {};
       let maximum = 0;
       for (let [original, scale] of valuesList)
       {
@@ -72,20 +73,28 @@ class TextIndex extends Index
         tokens.forEach(token => token.push(this.stem(token[0])))
         for (let value of tokens)
         {
-          let token = value[2];
-          total[token] = total[token] || 0;
-          total[token] += scale;
+          const token = value[2];
+          words[token] = words[token] || 0;
+          words[token] += scale;
           count += scale;
-          maximum = Math.max(total[token], maximum)
+          maximum = Math.max(words[token], maximum)
         }
-        values[tokens.map(token => token[2])
+        for (let tokenIndex = 1; tokenIndex < tokens.length; tokenIndex++)
+        {
+          const token = tokens[tokenIndex - 1][2] + tokens[tokenIndex][2];
+          bagOfWords[token] = bagOfWords[token] || 0;
+          bagOfWords[token] += 1;
+          count += 1;
+        }
+        stemmedFull[tokens.map(token => token[2])
           .join(' ')] = 1;
       }
-      values = Object.keys(values)
+      stemmedFull = Object.keys(stemmedFull)
         .join(' ');
       return {
-        values,
-        total,
+        stemmedFull,
+        words,
+        bagOfWords,
         count,
         maximum
       };
@@ -93,8 +102,9 @@ class TextIndex extends Index
     else
     {
       return {
-        values: '',
-        total: {},
+        stemmedFull: '',
+        words: {},
+        bagOfWords: {},
         count: 0
       };
     }
@@ -112,9 +122,8 @@ class TextIndex extends Index
      */
     documentIndices.forEach((documentIndex, valuesOffset) =>
     {
-      const value = documentsValues[valuesOffset].total;
-      const count = documentsValues[valuesOffset].count;
-      for (const [term, tally] of Object.entries(value))
+      const analysed = documentsValues[valuesOffset];
+      for (const [term, tally] of Object.entries(analysed.words))
       {
         index[term] = index[term] || {
           total: 0
@@ -123,16 +132,25 @@ class TextIndex extends Index
         index[term][documentIndex] += tally
         index[term].total += tally;
       }
-      this.length += count;
+      for (const [term, tally] of Object.entries(analysed.bagOfWords))
+      {
+        index[term] = index[term] || {
+          total: 0
+        };
+        index[term][documentIndex] = index[term][documentIndex] || 0;
+        index[term][documentIndex] += tally
+        index[term].total += tally;
+      }
+      this.totalWordsTally += analysed.count;
     });
 
-    let maximum = 0;
+    let maximumDocumentsByTerm = 0;
     for (const docs of Object.values(index))
     {
-      maximum = Math.max(maximum, Object.keys(docs)
+      maximumDocumentsByTerm = Math.max(maximumDocumentsByTerm, Object.keys(docs)
         .length - 1);
     }
-    this.maximum = maximum;
+    this.maximumDocumentsByTerm = maximumDocumentsByTerm;
   }
 
   /**
@@ -143,13 +161,15 @@ class TextIndex extends Index
     documentIndices.forEach((documentIndex, valuesOffset) =>
     {
       let value = documentsValues[valuesOffset];
-      if (value && value.total)
+      if (value && value.words)
       {
-        value = value.total;
-        for (let kw of Object.entries(value))
+        for (const [term, tally] of Object.entries(value.words))
         {
-          const term = kw[0];
-          const tally = kw[1];
+          index[term][documentIndex] -= tally
+          index[term].total -= tally;
+        }
+        for (const [term, tally] of Object.entries(value.bagOfWords))
+        {
           index[term][documentIndex] -= tally
           index[term].total -= tally;
         }
@@ -173,10 +193,10 @@ class TextIndex extends Index
   filterQueryImpl(index, filter, results, score, exact)
   {
     let final = false;
-    const values = this.analyseValue([
+    const analysed = this.analyseValue([
       [filter.values.join(' '), 1]
     ]);
-    Object.entries(values.total)
+    Object.entries(analysed.words)
       .map((keywordTally, keywordIndex, all) =>
       {
         const [keyword, tally] = keywordTally;
@@ -196,10 +216,10 @@ class TextIndex extends Index
                   value.count,
                   value.maximum,
                   resultFragment.total,
-                  this.length,
+                  this.totalWordsTally,
                   this.values.length,
                   all.length,
-                  this.maximum) * tally;
+                  this.maximumDocumentsByTerm) * tally;
               }
             }
           }
@@ -221,10 +241,10 @@ class TextIndex extends Index
                   value.count,
                   value.maximum,
                   resultFragment.total,
-                  this.length,
+                  this.totalWordsTally,
                   this.values.length,
                   all.length,
-                  this.maximum) * tally;
+                  this.maximumDocumentsByTerm) * tally;
               }
             }
           }
@@ -232,9 +252,34 @@ class TextIndex extends Index
         else
         {
           results.addKeyword(filter.values[keywordIndex], 0);
-          if (!this.allowPartial)
+          if (!this.allowPartialMatch)
           {
             final = {};
+
+          }
+        }
+      });
+    Object.entries(analysed.bagOfWords)
+      .map((keywordTally, keywordIndex, all) =>
+      {
+        const [keyword, tally] = keywordTally;
+        let resultFragment = index[keyword];
+        if (resultFragment && resultFragment.total > 0)
+        {
+          for (const [result, resultTally] of Object.entries(resultFragment))
+          {
+            if (result !== 'total')
+            {
+              const value = this.values[result];
+              final[result] += score(resultTally,
+                value.count,
+                value.maximum,
+                resultFragment.total,
+                this.totalWordsTally,
+                this.values.length,
+                all.length,
+                this.maximumDocumentsByTerm) * tally;
+            }
           }
         }
       });
@@ -242,7 +287,7 @@ class TextIndex extends Index
     {
       if (exact)
       {
-        exact = new RegExp(values.values, 'ig')
+        exact = new RegExp(analysed.values, 'ig')
       }
       for (let [result, resultTally] of Object.entries(final))
       {
@@ -250,7 +295,7 @@ class TextIndex extends Index
         {
           try
           {
-            const match = this.values[result].values.match(exact);
+            const match = this.values[result].stemmedFull.match(exact);
             if (match && match.length)
             {
               resultTally *= match.length
@@ -258,7 +303,7 @@ class TextIndex extends Index
           }
           catch (e)
           {
-
+            console.log(e.stack)
           }
         }
         if (resultTally > 0)
@@ -271,7 +316,7 @@ class TextIndex extends Index
 
   getSortValue(index)
   {
-    return this.values[index].values
+    return this.values[index].stemmedFull
   }
 
 }
