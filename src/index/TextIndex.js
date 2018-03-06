@@ -3,12 +3,11 @@
 const Index = require('./Index');
 const extractObjectValues = require('../misc/extractObjectValues');
 const decoder = require('unidecode');
-const Lexer = require('pos')
-  .Lexer;
+const Lexer = require('pos').Lexer;
 const Tagger = require('pos')
   .Tagger;
-const stemmer = require('porter-stemmer')
-  .stemmer;
+const lemmer = require('lemmatizer').lemmatizer;
+const stemmer = require('lancaster-stemmer');
 
 const INDEX_TYPE = 'text';
 
@@ -23,6 +22,7 @@ class TextIndex extends Index
     this.lex = this.lex.lex.bind(this.lex)
     this.tag = new Tagger();
     this.tag = this.tag.tag.bind(this.tag);
+    this.lemm = lemmer;
     this.stem = stemmer;
     this.totalWordsTally = config.totalWordsTally || 0;
     this.maximumDocumentsByTerm = config.maximumDocumentsByTerm || 0;
@@ -69,7 +69,7 @@ class TextIndex extends Index
       for (let [original, scale] of valuesList)
       {
         let tokens = this.tag(this.lex(decoder(original)
-          .toLowerCase()));
+          .toLowerCase())).filter(t => t[1].match(/[A-Z]/));
         tokens.forEach(token => token.push(this.stem(token[0])))
         for (let value of tokens)
         {
@@ -78,10 +78,19 @@ class TextIndex extends Index
           words[token] += scale;
           count += scale;
           maximum = Math.max(words[token], maximum)
+          const lemm = this.lemm(value[0]);
+          if (lemm !== value[0])
+          {
+            const ltoken = this.stem(lemm);
+            bagOfWords[ltoken] = bagOfWords[ltoken] || 0;
+            bagOfWords[ltoken] += .001;
+            count += .001;
+          }
         }
         for (let tokenIndex = 1; tokenIndex < tokens.length; tokenIndex++)
         {
-          const token = tokens[tokenIndex - 1][2] + tokens[tokenIndex][2];
+          const t1 = tokens[tokenIndex - 1], t2 = tokens[tokenIndex];
+          const token = t1[2] + t2[2];
           bagOfWords[token] = bagOfWords[token] || 0;
           bagOfWords[token] += 1;
           count += 1;

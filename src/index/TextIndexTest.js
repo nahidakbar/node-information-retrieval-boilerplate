@@ -14,6 +14,7 @@ indexTester('text', {
     'Mary KISSES asses of kings',
     'assult on the titan',
     'assignments are boring',
+    'legal and taxation affairs are boring (really really shit)',
     null,
     true,
     false
@@ -40,7 +41,10 @@ indexTester('text', {
     input: 'king and mary',
     output: [5]
   }, {
+    input: 'tax',
+    output: [8]
+  }, {
     input: 'not ass',
-    output: [0, 1, 2, 3, 6, 7, 8, 9, 10]
+    output: [0, 1, 2, 3, 6, 7, 8, 9, 10, 11]
   }]
 });

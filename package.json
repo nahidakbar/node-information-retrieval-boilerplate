@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "fast-levenshtein": "^2.0.6",
-    "porter-stemmer": "^0.9.1",
+    "lancaster-stemmer": "^1.0.2",
+    "lemmatizer": "0.0.1",
     "pos": "^0.4.2",
     "unidecode": "^0.1.8"
   }
