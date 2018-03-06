@@ -1,0 +1,252 @@
+{
+  "coverage": "35.34%",
+  "expectCount": 215,
+  "actualCount": 76,
+  "files": {
+    "node-information-retrieval-boilerplate/src/Results.js": {
+      "expectCount": 10,
+      "actualCount": 1,
+      "undocumentLines": [
+        8,
+        10,
+        11,
+        14,
+        19,
+        27,
+        43,
+        69,
+        92
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/System.js": {
+      "expectCount": 29,
+      "actualCount": 21,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        6,
+        82,
+        134,
+        238,
+        315
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/evaluate.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "node-information-retrieval-boilerplate/src/index/BooleanIndex.js": {
+      "expectCount": 14,
+      "actualCount": 2,
+      "undocumentLines": [
+        3,
+        4,
+        6,
+        8,
+        10,
+        13,
+        16,
+        29,
+        34,
+        59,
+        71,
+        85
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index/Index.js": {
+      "expectCount": 25,
+      "actualCount": 23,
+      "undocumentLines": [
+        3,
+        184
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index/NumberIndex.js": {
+      "expectCount": 16,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        4,
+        6,
+        8,
+        10,
+        13,
+        16,
+        36,
+        41,
+        46,
+        66,
+        82,
+        96,
+        112,
+        128
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index/StringIndex.js": {
+      "expectCount": 14,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        7,
+        9,
+        11,
+        14,
+        17,
+        31,
+        36,
+        58,
+        70,
+        84
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index/TextIndex.js": {
+      "expectCount": 29,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12,
+        14,
+        16,
+        19,
+        20,
+        21,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        33,
+        42,
+        60,
+        122,
+        127,
+        189,
+        202,
+        326
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index/register.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/index.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        14,
+        16,
+        18,
+        20
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/misc/extractObjectValues.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        32
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        7,
+        9,
+        11,
+        14,
+        15,
+        18,
+        26,
+        51,
+        82
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/processors/Processor.js": {
+      "expectCount": 10,
+      "actualCount": 9,
+      "undocumentLines": [
+        28
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/processors/Sorter.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5,
+        7,
+        9,
+        14,
+        48
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/processors/register.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/query/QueryParser.js": {
+      "expectCount": 11,
+      "actualCount": 2,
+      "undocumentLines": [
+        9,
+        17,
+        18,
+        27,
+        38,
+        39,
+        44,
+        45,
+        48
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/query/StringQueryParser.js": {
+      "expectCount": 15,
+      "actualCount": 2,
+      "undocumentLines": [
+        3,
+        4,
+        12,
+        17,
+        34,
+        122,
+        146,
+        162,
+        178,
+        191,
+        258,
+        292,
+        302
+      ]
+    },
+    "node-information-retrieval-boilerplate/src/scores/index.js": {
+      "expectCount": 11,
+      "actualCount": 11,
+      "undocumentLines": []
+    }
+  }
+}

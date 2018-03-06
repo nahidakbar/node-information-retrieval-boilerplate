@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">node-information-retrieval-boilerplate/src/evaluate.js | information-retrieval-boilerplate</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Various boilerplate stuff for making information retieval systems easier to make."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="information-retrieval-boilerplate"><meta property="twitter:description" content="Various boilerplate stuff for making information retieval systems easier to make."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src">src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-System">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processors">processors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scores">scores</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Document">Document</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-index">src/index</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Index">Index</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-misc">src/misc</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-processors">src/processors</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Processor">Processor</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-query">src/query</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Query">Query</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-QueryFilter">QueryFilter</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-scores">src/scores</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-augmented">augmented</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-binary">binary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logNormal">logNormal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unary">unary</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">node-information-retrieval-boilerplate/src/evaluate.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&quot;use strict&quot;;
+
+/**
+ * Evaluate an IR system.
+ *
+ * @param  {System} system description
+ * @param  {QueryParser} parser  description
+ * @param  {object} cases  description
+ * @return {object}        description
+ */
+async function evaluate(system, parser, expected)
+{
+  // find actual results
+  const actual = {};
+  for (const query of Object.keys(expected))
+  {
+    actual[query] = (await system.retrieveDocuments(parser.parse(query)));
+    actual[query] = actual[query].results.map(x =&gt; x.id);
+  }
+
+  let count = Object.keys(expected)
+    .length;
+
+  const individual = {};
+
+  for (let [query, T] of Object.entries(expected))
+  {
+    let P = actual[query];
+    const TP = P.filter(a =&gt; T.indexOf(a) !== -1)
+      .length;
+    const FP = P.filter(a =&gt; T.indexOf(a) === -1)
+      .length;
+
+    let F = system.ids.filter(n =&gt; T.indexOf(n) === -1)
+      .length;
+
+    let N = system.ids.filter(n =&gt; P.indexOf(n) === -1);
+    const TN = N.filter(a =&gt; T.indexOf(a) === -1)
+      .length;
+    const FN = N.filter(a =&gt; T.indexOf(a) !== -1)
+      .length;
+    N = N.length;
+    P = P.length;
+    T = T.length;
+
+    let TPR = (TP + FN) !== 0 ? TP / (TP + FN) : 0;
+    let TNR = (TN + FP) !== 0 ? TN / (TN + FP) : 0;
+    let PPV = P !== 0 ? TP / (TP + FP) : 0;
+    let NPV = N !== 0 ? TN / (TN + FN) : 0;
+    let FNR = 1 - TPR;
+    let FPR = 1 - TNR;
+    let FDR = 1 - PPV;
+    let FOR = 1 - NPV;
+    let ACC = (TN + TP) / (P + N);
+    let F1 = 2 * PPV * TPR / (PPV + TPR);
+    let MCC = (TP * TN - FP * FN) / Math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN));
+    let BM = TPR + TNR - 1;
+    let MK = PPV + NPV - 1;
+
+    individual[query] = {
+      T,
+      F,
+      P,
+      N,
+      TP,
+      TN,
+      FP,
+      FN,
+      TPR,
+      TNR,
+      PPV,
+      NPV,
+      FNR,
+      FPR,
+      FDR,
+      FOR,
+      ACC,
+      F1,
+      MCC,
+      BM,
+      MK
+    }
+
+  }
+
+  const overall = {};
+  for (let ind of Object.values(individual))
+  {
+    for (let [marker, value] of Object.entries(ind))
+    {
+      overall[marker] = overall[marker] || 0;
+      if (Number.isFinite(value))
+      {
+        overall[marker] += value / count;
+      }
+    }
+  }
+
+  return {
+    individual,
+    overall
+  };
+}
+
+module.exports = evaluate;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

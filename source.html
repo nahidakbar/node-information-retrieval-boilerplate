@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="">
+  <title data-ice="title">Source | information-retrieval-boilerplate</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Various boilerplate stuff for making information retieval systems easier to make."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="information-retrieval-boilerplate"><meta property="twitter:description" content="Various boilerplate stuff for making information retieval systems easier to make."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src">src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-System">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processors">processors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scores">scores</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Document">Document</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-index">src/index</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Index">Index</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-misc">src/misc</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-processors">src/processors</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Processor">Processor</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-query">src/query</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Query">Query</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-QueryFilter">QueryFilter</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-scores">src/scores</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-augmented">augmented</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-binary">binary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logNormal">logNormal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unary">unary</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">76/215</span></h1>
+
+<table class="files-summary" data-ice="files" data-use-coverage="true">
+  <thead>
+    <tr>
+      <td>File</td>
+      <td>Identifier</td>
+      <td class="coverage">Document</td>
+      <td style="display: none;">Size</td>
+      <td style="display: none;">Lines</td>
+      <td style="display: none;">Updated</td>
+    </tr>
+  </thead>
+  <tbody>
+    
+  <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/Document.js.html">node-information-retrieval-boilerplate/src/Document.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">79 byte</td>
+      <td style="display: none;" data-ice="lines">4</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/Results.js.html#errorLines=10,11,14,19,27,43,69,8,92">node-information-retrieval-boilerplate/src/Results.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></td>
+      <td class="coverage"><span data-ice="coverage">10 %</span><span data-ice="coverageCount" class="coverage-count">1/10</span></td>
+      <td style="display: none;" data-ice="size">1995 byte</td>
+      <td style="display: none;" data-ice="lines">113</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/System.js.html#errorLines=134,238,3,315,4,5,6,82">node-information-retrieval-boilerplate/src/System.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></td>
+      <td class="coverage"><span data-ice="coverage">72 %</span><span data-ice="coverageCount" class="coverage-count">21/29</span></td>
+      <td style="display: none;" data-ice="size">7895 byte</td>
+      <td style="display: none;" data-ice="lines">349</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/evaluate.js.html">node-information-retrieval-boilerplate/src/evaluate.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">2220 byte</td>
+      <td style="display: none;" data-ice="lines">105</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index.js.html#errorLines=10,14,16,18,20">node-information-retrieval-boilerplate/src/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span>
+<span><a href="variable/index.html#static-variable-System">System</a></span>
+<span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span>
+<span><a href="variable/index.html#static-variable-processors">processors</a></span>
+<span><a href="variable/index.html#static-variable-scores">scores</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/5</span></td>
+      <td style="display: none;" data-ice="size">543 byte</td>
+      <td style="display: none;" data-ice="lines">20</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/BooleanIndex.js.html#errorLines=10,13,16,29,3,34,4,59,6,71,8,85">node-information-retrieval-boilerplate/src/index/BooleanIndex.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span>
+<span><a href="variable/index.html#static-variable-Index">Index</a></span></td>
+      <td class="coverage"><span data-ice="coverage">14 %</span><span data-ice="coverageCount" class="coverage-count">2/14</span></td>
+      <td style="display: none;" data-ice="size">2142 byte</td>
+      <td style="display: none;" data-ice="lines">102</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/Index.js.html#errorLines=184,3">node-information-retrieval-boilerplate/src/index/Index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></td>
+      <td class="coverage"><span data-ice="coverage">92 %</span><span data-ice="coverageCount" class="coverage-count">23/25</span></td>
+      <td style="display: none;" data-ice="size">5729 byte</td>
+      <td style="display: none;" data-ice="lines">243</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/NumberIndex.js.html#errorLines=10,112,128,13,16,3,36,4,41,46,6,66,8,82,96">node-information-retrieval-boilerplate/src/index/NumberIndex.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></td>
+      <td class="coverage"><span data-ice="coverage">6 %</span><span data-ice="coverageCount" class="coverage-count">1/16</span></td>
+      <td style="display: none;" data-ice="size">3470 byte</td>
+      <td style="display: none;" data-ice="lines">148</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/StringIndex.js.html#errorLines=11,14,17,3,31,36,4,5,58,7,70,84,9">node-information-retrieval-boilerplate/src/index/StringIndex.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></td>
+      <td class="coverage"><span data-ice="coverage">7 %</span><span data-ice="coverageCount" class="coverage-count">1/14</span></td>
+      <td style="display: none;" data-ice="size">2345 byte</td>
+      <td style="display: none;" data-ice="lines">102</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/TextIndex.js.html#errorLines=10,12,122,127,14,16,189,19,20,202,21,23,25,26,27,28,29,3,30,326,33,4,42,5,6,60,7,9">node-information-retrieval-boilerplate/src/index/TextIndex.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></td>
+      <td class="coverage"><span data-ice="coverage">3 %</span><span data-ice="coverageCount" class="coverage-count">1/29</span></td>
+      <td style="display: none;" data-ice="size">9031 byte</td>
+      <td style="display: none;" data-ice="lines">335</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/index/register.js.html#errorLines=3,5">node-information-retrieval-boilerplate/src/index/register.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">145 byte</td>
+      <td style="display: none;" data-ice="lines">14</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/misc/extractObjectValues.js.html#errorLines=3,32">node-information-retrieval-boilerplate/src/misc/extractObjectValues.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></td>
+      <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">1/3</span></td>
+      <td style="display: none;" data-ice="size">1844 byte</td>
+      <td style="display: none;" data-ice="lines">84</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js.html#errorLines=11,14,15,18,26,3,4,5,51,7,82,9">node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span>
+<span><a href="variable/index.html#static-variable-Processor">Processor</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/12</span></td>
+      <td style="display: none;" data-ice="size">2233 byte</td>
+      <td style="display: none;" data-ice="lines">103</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/processors/Processor.js.html#errorLines=28">node-information-retrieval-boilerplate/src/processors/Processor.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></td>
+      <td class="coverage"><span data-ice="coverage">90 %</span><span data-ice="coverageCount" class="coverage-count">9/10</span></td>
+      <td style="display: none;" data-ice="size">1501 byte</td>
+      <td style="display: none;" data-ice="lines">82</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/processors/Sorter.js.html#errorLines=14,3,48,5,7,9">node-information-retrieval-boilerplate/src/processors/Sorter.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/6</span></td>
+      <td style="display: none;" data-ice="size">1782 byte</td>
+      <td style="display: none;" data-ice="lines">85</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/processors/register.js.html#errorLines=3,5">node-information-retrieval-boilerplate/src/processors/register.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">145 byte</td>
+      <td style="display: none;" data-ice="lines">14</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/query/Query.js.html">node-information-retrieval-boilerplate/src/query/Query.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">365 byte</td>
+      <td style="display: none;" data-ice="lines">13</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/query/QueryParser.js.html#errorLines=17,18,27,38,39,44,45,48,9">node-information-retrieval-boilerplate/src/query/QueryParser.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></td>
+      <td class="coverage"><span data-ice="coverage">18 %</span><span data-ice="coverageCount" class="coverage-count">2/11</span></td>
+      <td style="display: none;" data-ice="size">1368 byte</td>
+      <td style="display: none;" data-ice="lines">59</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/query/StringQueryParser.js.html#errorLines=12,122,146,162,17,178,191,258,292,3,302,34,4">node-information-retrieval-boilerplate/src/query/StringQueryParser.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></td>
+      <td class="coverage"><span data-ice="coverage">13 %</span><span data-ice="coverageCount" class="coverage-count">2/15</span></td>
+      <td style="display: none;" data-ice="size">7322 byte</td>
+      <td style="display: none;" data-ice="lines">337</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/node-information-retrieval-boilerplate/src/scores/index.js.html">node-information-retrieval-boilerplate/src/scores/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-augmented">augmented</a></span>
+<span><a href="function/index.html#static-function-binary">binary</a></span>
+<span><a href="function/index.html#static-function-count">count</a></span>
+<span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span>
+<span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span>
+<span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span>
+<span><a href="function/index.html#static-function-logNormal">logNormal</a></span>
+<span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span>
+<span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span>
+<span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span>
+<span><a href="function/index.html#static-function-unary">unary</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">11/11</span></td>
+      <td style="display: none;" data-ice="size">6978 byte</td>
+      <td style="display: none;" data-ice="lines">183</td>
+      <td style="display: none;" data-ice="updated">2018-03-03 12:21:58 (UTC)</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

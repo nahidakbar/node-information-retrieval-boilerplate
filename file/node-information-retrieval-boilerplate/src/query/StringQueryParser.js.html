@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">node-information-retrieval-boilerplate/src/query/StringQueryParser.js | information-retrieval-boilerplate</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Various boilerplate stuff for making information retieval systems easier to make."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="information-retrieval-boilerplate"><meta property="twitter:description" content="Various boilerplate stuff for making information retieval systems easier to make."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src">src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-System">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processors">processors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scores">scores</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Document">Document</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-index">src/index</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Index">Index</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-misc">src/misc</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-processors">src/processors</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Processor">Processor</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-query">src/query</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Query">Query</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-QueryFilter">QueryFilter</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-scores">src/scores</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-augmented">augmented</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-binary">binary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logNormal">logNormal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unary">unary</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">node-information-retrieval-boilerplate/src/query/StringQueryParser.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&quot;use strict&quot;;
+
+const QueryParser = require(&apos;./QueryParser&apos;);
+const decoder = require(&apos;unidecode&apos;);
+
+/**
+ * Helper functionality for parsing query representes
+ * in different formats into the one this package supports.
+ */
+class StringQueryParser extends QueryParser
+{
+  constructor(config = {})
+  {
+    super(config);
+  }
+
+  parse(query, maxTokns = 15)
+  {
+    const tokens = Array.from(this.tokenise(query.substr(0, maxTokns * 10)));
+
+    // lets try some bottom up parsing
+    this.parseJoinAllExactMatchTokens(tokens);
+    this.parseJoinAllNotTokens(tokens);
+    this.parseJoinAllFieldTokens(tokens);
+    this.parseJoinAllRegularTokens(tokens);
+    this.parseJoinAllAndOrTokens(tokens);
+    const fresh = this.getDefault();
+    fresh.filter = this.treeToFilters(fresh, {
+      maxTokns
+    }, [tokens, &apos;and&apos;]) || [];
+    return fresh;
+  }
+
+  treeToFilters(fresh, config, tree)
+  {
+    config.tokenIndex = config.tokenIndex || 0;
+    let [values, filter] = tree, field;
+    switch (filter)
+    {
+    case &apos;and&apos;:
+    case &apos;or&apos;:
+      values = values.map(this.treeToFilters.bind(this, fresh, config))
+        .filter(x =&gt; x);
+      if (values.length === 0)
+      {
+        return undefined;
+      }
+      else if (values.length === 1)
+      {
+        return values[0];
+      }
+      else
+      {
+        return {
+          filter,
+          values
+        };
+      }
+    case &apos;not&apos;:
+      if (values)
+      {
+        values.splice(2, 0, ...tree.slice(2))
+        values = this.treeToFilters(fresh, config, values);
+        return {
+          filter,
+          values
+        };
+      }
+      else
+      {
+        return;
+      }
+    case &apos;a&apos;:
+    case &apos;exact&apos;:
+      filter = tree[3] || (tree[2] &amp;&amp; this.fields[tree[2]] &amp;&amp; this.fields[tree[2]].filters[0]) || (filter === &apos;exact&apos; ? this.defaultExactFilter : this.defaultFilter);
+      field = tree[2] || this.defaultField;
+      values = values.split(&apos; &apos;);
+      if (field === &apos;sort&apos;)
+      {
+        fresh.sort = this.sort.indexOf(values[0]) === -1 ? fresh.sort : values[0];
+        return;
+      }
+      else if (field === &apos;order&apos;)
+      {
+        fresh.order = values[0].toLowerCase() === &apos;asc&apos; ? &apos;asc&apos; : &apos;dsc&apos;;
+        return
+      }
+      else
+      {
+        if (!this.fields[field] &amp;&amp; this.fields[this.defaultField].filters.indexOf(field) !== -1)
+        {
+          filter = field;
+          field = this.defaultField;
+        }
+        if (!this.fields[field])
+        {
+          return
+        }
+        else if (this.fields[field].filters.indexOf(filter) === -1)
+        {
+          return
+        }
+        else if (config.tokenIndex &gt; config.maxTokns)
+        {
+          return;
+        }
+        else
+        {
+          config.tokenIndex++;
+          return {
+            filter,
+            field,
+            values,
+          };
+        }
+      }
+    default:
+      console.log(&apos;UNHANDELLED&apos;, filter, values);
+    }
+  }
+
+  parseJoinAllExactMatchTokens(tokens)
+  {
+    for (let i = 0; i &lt; tokens.length; i++)
+    {
+      if (tokens[i][1] === &apos;&quot;&apos;)
+      {
+        tokens[i] = [&apos;&apos;, &apos;exact&apos;];
+        while (i + 1 &lt; tokens.length)
+        {
+          const next = tokens.splice(i + 1, 1)[0];
+          if (next[1] !== &apos;&quot;&apos;)
+          {
+            tokens[i][0] += &apos; &apos; + next[0];
+          }
+          else
+          {
+            break;
+          }
+        }
+        tokens[i][0] = tokens[i][0].trim();
+      }
+    }
+  }
+
+  parseJoinAllNotTokens(tokens)
+  {
+    for (let i = 0; i &lt; tokens.length; i++)
+    {
+      if (tokens[i][1] === &apos;not&apos;)
+      {
+        let next = false;
+        while (!next &amp;&amp; i + 1 &lt; tokens.length)
+        {
+          next = tokens.splice(i + 1, 1)[0];
+        }
+        tokens[i][0] = next;
+      }
+    }
+  }
+
+  parseJoinAllFieldTokens(tokens)
+  {
+    for (let i = 0; i &lt; tokens.length; i++)
+    {
+      if (tokens[i][1] === &apos;:&apos; &amp;&amp; i &gt; 0 &amp;&amp; i + 1 &lt; tokens.length)
+      {
+        if (tokens[i - 1].length &gt; 2)
+        {
+          tokens[i + 1].push(tokens[i - 1][2]);
+        }
+        tokens[i + 1].push(tokens[i - 1][0]);
+        tokens.splice(--i, 2);
+      }
+    }
+  }
+
+  parseJoinAllRegularTokens(tokens)
+  {
+    for (let i = 1; i &lt; tokens.length; i++)
+    {
+      const signature = tokens[i - 1][1] + tokens[i - 0][1];
+      if (signature === &apos;aa&apos; &amp;&amp; tokens[i - 1].length === 2 &amp;&amp; tokens[i - 0].length === 2)
+      {
+        tokens[i - 1][0] = tokens[i - 1][0] + &apos; &apos; + tokens[i - 0][0];
+        tokens.splice(i--, 1)
+      }
+    }
+  }
+
+  parseJoinAllAndOrTokens(tokens)
+  {
+    for (let operator of [&apos;and&apos;, &apos;or&apos;])
+    {
+      for (let i = 0; i &lt; tokens.length; i++)
+      {
+        if (tokens[i][1] === operator)
+        {
+          if (i &gt; 0 &amp;&amp; i + 1 &lt; tokens.length)
+          {
+            if (tokens[i - 1][1] === operator)
+            {
+              tokens[i - 1][0].push(tokens[i + 1]);
+            }
+            else
+            {
+              tokens[i - 1] = [
+                [tokens[i - 1], tokens[i + 1]], operator
+              ];
+            }
+            tokens.splice(i--, 2);
+          }
+          else if (typeof tokens[i][0] === &apos;string&apos;)
+          {
+            tokens.splice(i--, 1);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Probably the smallest tokeniser ever written
+   */
+  * tokenise(string)
+  {
+    for (let [char, class_] of this.lemmatise(string))
+    {
+      switch (class_)
+      {
+      case &apos;a&apos;:
+        switch (char.toLowerCase())
+        {
+        case &apos;and&apos;:
+          yield [char, &apos;and&apos;];
+          continue;
+        case &apos;or&apos;:
+          yield [char, &apos;or&apos;];
+          continue;
+        case &apos;not&apos;:
+          yield [char, &apos;not&apos;];
+          continue;
+        }
+        break;
+      case &apos;-&apos;:
+        yield [char, &apos;not&apos;];
+        continue;
+      case &apos; &apos;:
+        continue;
+      case &apos;0&apos;:
+        yield [char, &apos;a&apos;];
+        continue;
+      }
+      yield [char, class_];
+    }
+  }
+
+  * lemmatise(string)
+  {
+    let last = &apos;&apos;;
+    let lastClass = false;
+    let tokens = Array.from(this.lex(string));
+    for (let [char, class_] of tokens)
+    {
+      if (!lastClass)
+      {
+        [last, lastClass] = [char, class_];
+      }
+      else if (lastClass !== class_ &amp;&amp; !(lastClass === &apos;a&apos; &amp;&amp; class_ === &apos;0&apos;) &amp;&amp; !(lastClass === &apos;0&apos; &amp;&amp; char === &apos;e&apos;) &amp;&amp; !(lastClass === &apos;0&apos; &amp;&amp; char === &apos;-&apos;))
+      {
+        if (last === &apos;-&apos; &amp;&amp; class_ === &apos;0&apos;)
+        {
+          [last, lastClass] = [last + char, class_];
+        }
+        else
+        {
+          yield [last, lastClass];
+          [last, lastClass] = [char, class_];
+        }
+      }
+      else
+      {
+        last += char;
+      }
+    }
+    if (last !== &apos;&apos;)
+    {
+      yield [last, lastClass];
+    }
+  }
+
+  * lex(string)
+  {
+    for (let char of decoder(string + &apos;&apos;)
+        .replace(/\s+/g, &apos; &apos;)
+        .trim())
+    {
+      yield [char, this.classifyChar(char)];
+    }
+  }
+
+  classifyChar(char)
+  {
+    switch (char)
+    {
+      // whitespace
+    case &apos;&quot;&apos;:
+    case &quot;&apos;&quot;:
+    case &quot;(&quot;:
+    case &quot;)&quot;:
+    case &quot;[&quot;:
+    case &quot;]&quot;:
+      return &apos;&quot;&apos;;
+    case &apos;:&apos;:
+      return &apos;:&apos;;
+    case &apos;-&apos;:
+      return &apos;-&apos;;
+    default:
+      if ((char &gt;= &apos;A&apos; &amp;&amp; char &lt;= &apos;Z&apos;) || (char &gt;= &apos;a&apos; &amp;&amp; char &lt;= &apos;z&apos;))
+      {
+        return &apos;a&apos;
+      }
+      else if ((char &gt;= &apos;0&apos; &amp;&amp; char &lt;= &apos;9&apos;) || (char === &apos;.&apos;))
+      {
+        return &apos;0&apos;
+      }
+      else
+      {
+        return &apos; &apos;;
+      }
+    }
+  }
+
+}
+
+
+module.exports = StringQueryParser;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

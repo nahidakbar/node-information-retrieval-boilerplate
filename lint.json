@@ -1,0 +1,134 @@
+[
+  {
+    "name": "System#retrieveDocuments",
+    "filePath": "node-information-retrieval-boilerplate/src/System.js",
+    "lines": [
+      {
+        "lineNumber": 195,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 196,
+        "line": "   * Retrieve a list of documents that matches a query."
+      },
+      {
+        "lineNumber": 197,
+        "line": "   * @param {Query} query query"
+      },
+      {
+        "lineNumber": 198,
+        "line": "   * @return {Document[]} retrieve"
+      },
+      {
+        "lineNumber": 199,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 200,
+        "line": "  async retrieveDocuments(query, score = scores.naiveBayes)"
+      }
+    ],
+    "codeParams": [
+      "query",
+      "score"
+    ],
+    "docParams": [
+      "query"
+    ]
+  },
+  {
+    "name": "evaluate",
+    "filePath": "node-information-retrieval-boilerplate/src/evaluate.js",
+    "lines": [
+      {
+        "lineNumber": 2,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 3,
+        "line": " * Evaluate an IR system."
+      },
+      {
+        "lineNumber": 4,
+        "line": " *"
+      },
+      {
+        "lineNumber": 5,
+        "line": " * @param  {System} system description"
+      },
+      {
+        "lineNumber": 6,
+        "line": " * @param  {QueryParser} parser  description"
+      },
+      {
+        "lineNumber": 7,
+        "line": " * @param  {object} cases  description"
+      },
+      {
+        "lineNumber": 8,
+        "line": " * @return {object}        description"
+      },
+      {
+        "lineNumber": 9,
+        "line": " */"
+      },
+      {
+        "lineNumber": 10,
+        "line": "async function evaluate(system, parser, expected)"
+      }
+    ],
+    "codeParams": [
+      "system",
+      "parser",
+      "expected"
+    ],
+    "docParams": [
+      "system",
+      "parser",
+      "cases"
+    ]
+  },
+  {
+    "name": "Index#filterDocuments",
+    "filePath": "node-information-retrieval-boilerplate/src/index/Index.js",
+    "lines": [
+      {
+        "lineNumber": 108,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 109,
+        "line": "   * Filter results based on query"
+      },
+      {
+        "lineNumber": 110,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 111,
+        "line": "   * @param {QueryFilter} queryFilter query to filter with"
+      },
+      {
+        "lineNumber": 112,
+        "line": "   * @param {Results} results results to filter (modify results object)"
+      },
+      {
+        "lineNumber": 113,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 114,
+        "line": "  filterDocuments(queryFilter, results = new Results(), score)"
+      }
+    ],
+    "codeParams": [
+      "queryFilter",
+      "results",
+      "score"
+    ],
+    "docParams": [
+      "queryFilter",
+      "results"
+    ]
+  }
+]

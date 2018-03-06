@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">node-information-retrieval-boilerplate/src/System.js | information-retrieval-boilerplate</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Various boilerplate stuff for making information retieval systems easier to make."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="information-retrieval-boilerplate"><meta property="twitter:description" content="Various boilerplate stuff for making information retieval systems easier to make."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src">src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-System">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processors">processors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scores">scores</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Document">Document</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-index">src/index</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Index">Index</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-misc">src/misc</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-processors">src/processors</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Processor">Processor</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-query">src/query</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Query">Query</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-QueryFilter">QueryFilter</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-scores">src/scores</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-augmented">augmented</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-binary">binary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logNormal">logNormal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unary">unary</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">node-information-retrieval-boilerplate/src/System.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&quot;use strict&quot;;
+
+const indicesRegister = require(&apos;./index/register&apos;);
+const processorRegister = require(&apos;./processors/register&apos;);
+const Results = require(&apos;./Results&apos;);
+const scores = require(&apos;./scores&apos;);
+/**
+ * Information Retrieval System Main Class
+ *
+ * Basic workflow is:
+ *
+ * * create a new IRSystem
+ * * add indices
+ * * manage(add/remove/update)/retrive document collection/sets
+ *
+ * or:
+ *
+ * * create a new IRSystem with saved state from another IRSystem
+ * * manage(add/remove/update)/retrive documents
+ *
+ */
+class System
+{
+  /**
+   * Construct new IR system.
+   *
+   * @param {IRSystem} [config={}] configuration/state. Can be result of state(). See attributes.
+   */
+  constructor(config = {})
+  {
+    for (let property in config)
+    {
+      /** @private */
+      this[property] = config[property];
+    }
+    /**
+     * id field name
+     * @type {string}
+     */
+    this.idField = this.idField || &apos;id&apos;;
+
+    /**
+     * list of ids
+     * index -&gt; id
+     * @private
+     */
+    this.ids = this.ids || [];
+    /**
+     * id lookup
+     * id =&gt; index
+     * @private
+     */
+    this.idLookup = this.idLookup || {};
+    // rebuild ids table
+    this.ids.forEach((id, index) =&gt; this.idLookup[id] = index);
+    /**
+     * name =&gt; index
+     * @private
+     */
+    this.indicesLookup = {};
+    /**
+     * system indices
+     * @type {Index[]}
+     */
+    this.indices = (this.indices || [])
+      .map(object =&gt;
+      {
+        object = new(indicesRegister.lookup[object.type])(object);
+        if (object.name)
+        {
+          (this.indicesLookup[object.name] || (this.indicesLookup[object.name] = []))
+          .push(object);
+        }
+        for (let filter of object.filters)
+        {
+          (this.indicesLookup[filter] || (this.indicesLookup[filter] = []))
+          .push(object);
+        }
+        return object;
+      });
+
+    this.processorsLookup = {};
+    /**
+     * system processors
+     * @type {Processor[]}
+     */
+    this.processors = (this.processors || [])
+      .map(object =&gt;
+      {
+        object = new(processorRegister.lookup[object.type])(object);
+        for (let bind of object.bind)
+        {
+          this.processorsLookup[bind] = this.processorsLookup[bind] || [];
+          this.processorsLookup[bind].push(object);
+        }
+        return object;
+      });
+  }
+
+  /**
+   * Dump current system state
+   * @return {object}
+   */
+  async state()
+  {
+    return {
+      idField: this.idField,
+      ids: this.ids,
+      indices: await Promise.all(this.indices.map(index =&gt; index.state())),
+      processors: await Promise.all(this.processors.map(processor =&gt; processor.state())),
+    };
+  }
+
+  /**
+   * Add a new index to the system.
+   * @return {IRSystem}
+   */
+  addIndex(index)
+  {
+    this.indices.push(index);
+    if (index.name)
+    {
+      (this.indicesLookup[index.name] || (this.indicesLookup[index.name] = []))
+      .push(index);
+    }
+    for (let filter of index.filters)
+    {
+      (this.indicesLookup[filter] || (this.indicesLookup[filter] = []))
+      .push(index);
+    }
+    return this;
+  }
+
+  addProcessor(processor)
+  {
+    this.processors.push(processor);
+    for (let bind of processor.bind)
+    {
+      this.processorsLookup[bind] = this.processorsLookup[bind] || [];
+      this.processorsLookup[bind].push(processor);
+    }
+    return this;
+  }
+
+  /**
+   * Add a set of documents to the IR system.
+   *
+   * Documents are added and removed in bulk for abusing any potential
+   * optimisations which might be available for doing things in bulk.
+   *
+   * @param {Document[]} documents document set to add
+   */
+  async addDocuments(documents = [])
+  {
+    const documentIndices = documents.map(this.helperGetIndex.bind(this));
+    for (let index of this.indices)
+    {
+      await index.addDocuments(documentIndices, documents);
+    }
+    for (let processor of (this.processorsLookup[&apos;add&apos;] || []))
+    {
+      await processor.addDocuments(this, documentIndices, documents);
+    }
+  }
+
+  /**
+   * Remove a set of documents from the IR system.
+   * @param {Document[]} documents document set to add
+   */
+  async removeDocuments(documents = [])
+  {
+    const documentIndices = documents.map(this.helperGetIndex.bind(this));
+    for (let index of this.indices)
+    {
+      await index.removeDocuments(documentIndices);
+    }
+    for (let processor of (this.processorsLookup[&apos;remove&apos;] || []))
+    {
+      await processor.removeDocuments(this, documentIndices);
+    }
+    this.helperRemoveIndices(documentIndices);
+  }
+
+  /**
+   * Alias of addDocuments.
+   *
+   * Add is the same as update in this system.
+   *
+   * @param {Document[]} documents document set to add
+   */
+  updateDocuments(documents = [])
+  {
+    return this.addDocuments(documents);
+  }
+
+  /**
+   * Retrieve a list of documents that matches a query.
+   * @param {Query} query query
+   * @return {Document[]} retrieve
+   */
+  async retrieveDocuments(query, score = scores.naiveBayes)
+  {
+    if (query &amp;&amp; query.filter)
+    {
+      for (let processor of (this.processorsLookup[&apos;query&apos;] || []))
+      {
+        await processor.processQuery(this, query);
+      }
+      const results = (await this.getResults(query.filter, score))
+        .normalise(this);
+      for (let processor of (this.processorsLookup[&apos;results&apos;] || []))
+      {
+        await processor.processResults(this, query, results);
+      }
+      return results;
+    }
+    return {};
+  }
+
+  /**
+   * @protected
+   */
+  async getResults(filter, score)
+  {
+    switch (filter.filter)
+    {
+    case &apos;and&apos;:
+      return await this.getAndResults(filter.values, score);
+    case &apos;or&apos;:
+      return await this.getOrResults(filter.values, score);
+    case &apos;not&apos;:
+      return await this.getNotResults(filter.values, score);
+    default:
+      return await this.getFilterResults(filter, score);
+    }
+  }
+
+  async getFilterResults(filter, score)
+  {
+    let results = new Results();
+    for (let index of (this.indicesLookup[filter.field || filter.filter] || []))
+    {
+      const newResults = new Results();
+      await index.filterDocuments(filter, newResults, score);
+      results = results.concat(newResults);
+    }
+    return results;
+  }
+
+  /**
+   * @protected
+   */
+  async getAndResults(values, score)
+  {
+    let results = undefined;
+    for (let filter of values)
+    {
+      let filterResults = await this.getResults(filter, score);
+      if (!results)
+      {
+        results = filterResults;
+      }
+      else
+      {
+        results = results.merge(filterResults);
+      }
+    }
+    return results;
+  }
+
+  /**
+   * @protected
+   */
+  async getOrResults(values, score)
+  {
+    let results = new Results();
+    for (let filter of values)
+    {
+      let filterResults = await this.getResults(filter, score);
+      results = results.concat(filterResults);
+    }
+    return results;
+  }
+
+  /**
+   * @protected
+   */
+  async getNotResults(filter, score)
+  {
+    const results = await this.getFilterResults(filter, score);
+    return results.invert(this.ids);
+  }
+
+  /**
+   * @protected
+   */
+  helperGetIndex(record)
+  {
+    const id = record[this.idField];
+    let lookup = this.idLookup[id];
+    if (lookup === undefined)
+    {
+      lookup = this.ids.indexOf(null);
+      if (lookup === -1)
+      {
+        lookup = this.ids.length;
+      }
+      this.idLookup[id] = lookup
+      this.ids[lookup] = id
+    }
+    return lookup;
+  }
+
+
+  helperRemoveIndices(indices)
+  {
+    indices.forEach(index =&gt;
+    {
+      const id = this.ids[index];
+      delete this.idLookup[id];
+      this.ids[index] = null;
+    })
+  }
+
+  /**
+   * @public
+   */
+  meta()
+  {
+    const fields = {};
+    let sort = {};
+    for (let index of this.indices)
+    {
+      fields[index.name] = {
+        filters: index.filters
+      }
+      index.sorts.forEach(key =&gt; sort[key] = 1);
+    }
+    sort = Object.keys(sort);
+    const meta = {
+      fields,
+      sort
+    };
+    return meta;
+  }
+
+}
+
+module.exports = System;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

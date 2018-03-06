@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">node-information-retrieval-boilerplate/src/index/TextIndex.js | information-retrieval-boilerplate</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Various boilerplate stuff for making information retieval systems easier to make."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="information-retrieval-boilerplate"><meta property="twitter:description" content="Various boilerplate stuff for making information retieval systems easier to make."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nahidakbar/node-information-retrieval-boilerplate.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src">src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/Results.js~Results.html">Results</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/System.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-StringQueryParser">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-System">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processors">processors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scores">scores</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Document">Document</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-index">src/index</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/BooleanIndex.js~BooleanIndex.html">BooleanIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/Index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/NumberIndex.js~NumberIndex.html">NumberIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/StringIndex.js~StringIndex.html">StringIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/index/TextIndex.js~TextIndex.html">TextIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Index">Index</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-misc">src/misc</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extractObjectValues">extractObjectValues</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-processors">src/processors</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/AltQuerySuggester.js~AltQuerySuggester.html">AltQuerySuggester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Processor.js~Processor.html">Processor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/processors/Sorter.js~Sorter.html">Sorter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Processor">Processor</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-query">src/query</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/QueryParser.js~QueryParser.html">QueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/node-information-retrieval-boilerplate/src/query/StringQueryParser.js~StringQueryParser.html">StringQueryParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Query">Query</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-QueryFilter">QueryFilter</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#src-scores">src/scores</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-augmented">augmented</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-binary">binary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequency">inverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencyMax">inverseDocumentFrequencyMax</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inverseDocumentFrequencySmooth">inverseDocumentFrequencySmooth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logNormal">logNormal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-naiveBayes">naiveBayes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-probabilisticInverseDocumentFrequency">probabilisticInverseDocumentFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-termFrequency">termFrequency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unary">unary</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">node-information-retrieval-boilerplate/src/index/TextIndex.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&quot;use strict&quot;;
+
+const Index = require(&apos;./Index&apos;);
+const extractObjectValues = require(&apos;../misc/extractObjectValues&apos;);
+const decoder = require(&apos;unidecode&apos;);
+const Lexer = require(&apos;pos&apos;).Lexer;
+const Tagger = require(&apos;pos&apos;)
+  .Tagger;
+const lemmer = require(&apos;lemmatizer&apos;).lemmatizer;
+const stemmer = require(&apos;lancaster-stemmer&apos;);
+
+const INDEX_TYPE = &apos;text&apos;;
+
+class TextIndex extends Index
+{
+  constructor(config = {}, type = undefined)
+  {
+    super(config, type || INDEX_TYPE);
+    this.filters = [&apos;query&apos;, &apos;queryexact&apos;];
+    this.decoder = decoder;
+    this.lex = new Lexer();
+    this.lex = this.lex.lex.bind(this.lex)
+    this.tag = new Tagger();
+    this.tag = this.tag.tag.bind(this.tag);
+    this.lemm = lemmer;
+    this.stem = stemmer;
+    this.totalWordsTally = config.totalWordsTally || 0;
+    this.maximumDocumentsByTerm = config.maximumDocumentsByTerm || 0;
+    this.sorts = [this.name];
+    this.allowPartialMatch = this.allowPartialMatch || false;
+  }
+
+  async state()
+  {
+    return Object.assign(await super.state(), {
+      totalWordsTally: this.totalWordsTally,
+      maximumDocumentsByTerm: this.maximumDocumentsByTerm,
+      allowPartialMatch: this.allowPartialMatch
+    });
+  }
+
+  getDocumentValues(document)
+  {
+    let values = [];
+    extractObjectValues(document, this.fields, (newValue, field, scale) =&gt;
+    {
+      if (typeof newValue === &apos;string&apos;)
+      {
+        newValue = newValue.replace(/\s+/g, &apos; &apos;)
+          .trim();
+        if (newValue)
+        {
+          values.push([newValue, scale]);
+        }
+      }
+    });
+    return values.length &amp;&amp; values || null;
+  }
+
+  analyseValue(valuesList)
+  {
+    if (valuesList)
+    {
+      let count = 0;
+      let words = {};
+      let bagOfWords = {};
+      let stemmedFull = {};
+      let maximum = 0;
+      for (let [original, scale] of valuesList)
+      {
+        let tokens = this.tag(this.lex(decoder(original)
+          .toLowerCase())).filter(t =&gt; t[1].match(/[A-Z]/));
+        tokens.forEach(token =&gt; token.push(this.stem(token[0])))
+        for (let value of tokens)
+        {
+          const token = value[2];
+          words[token] = words[token] || 0;
+          words[token] += scale;
+          count += scale;
+          maximum = Math.max(words[token], maximum)
+          const lemm = this.lemm(value[0]);
+          if (lemm !== value[0])
+          {
+            const ltoken = this.stem(lemm);
+            bagOfWords[ltoken] = bagOfWords[ltoken] || 0;
+            bagOfWords[ltoken] += .001;
+            count += .001;
+          }
+        }
+        for (let tokenIndex = 1; tokenIndex &lt; tokens.length; tokenIndex++)
+        {
+          const t1 = tokens[tokenIndex - 1], t2 = tokens[tokenIndex];
+          const token = t1[2] + t2[2];
+          bagOfWords[token] = bagOfWords[token] || 0;
+          bagOfWords[token] += 1;
+          count += 1;
+        }
+        stemmedFull[tokens.map(token =&gt; token[2])
+          .join(&apos; &apos;)] = 1;
+      }
+      stemmedFull = Object.keys(stemmedFull)
+        .join(&apos; &apos;);
+      return {
+        stemmedFull,
+        words,
+        bagOfWords,
+        count,
+        maximum
+      };
+    }
+    else
+    {
+      return {
+        stemmedFull: &apos;&apos;,
+        words: {},
+        bagOfWords: {},
+        count: 0
+      };
+    }
+  }
+
+  createIndex()
+  {
+    return {};
+  }
+
+  async addToIndex(index, documentIndices, documentsValues)
+  {
+    /**
+     * O(documentIndices)
+     */
+    documentIndices.forEach((documentIndex, valuesOffset) =&gt;
+    {
+      const analysed = documentsValues[valuesOffset];
+      for (const [term, tally] of Object.entries(analysed.words))
+      {
+        index[term] = index[term] || {
+          total: 0
+        };
+        index[term][documentIndex] = index[term][documentIndex] || 0;
+        index[term][documentIndex] += tally
+        index[term].total += tally;
+      }
+      for (const [term, tally] of Object.entries(analysed.bagOfWords))
+      {
+        index[term] = index[term] || {
+          total: 0
+        };
+        index[term][documentIndex] = index[term][documentIndex] || 0;
+        index[term][documentIndex] += tally
+        index[term].total += tally;
+      }
+      this.totalWordsTally += analysed.count;
+    });
+
+    let maximumDocumentsByTerm = 0;
+    for (const docs of Object.values(index))
+    {
+      maximumDocumentsByTerm = Math.max(maximumDocumentsByTerm, Object.keys(docs)
+        .length - 1);
+    }
+    this.maximumDocumentsByTerm = maximumDocumentsByTerm;
+  }
+
+  /**
+   * O(documentIndices)
+   */
+  async removeFromIndex(index, documentIndices, documentsValues)
+  {
+    documentIndices.forEach((documentIndex, valuesOffset) =&gt;
+    {
+      let value = documentsValues[valuesOffset];
+      if (value &amp;&amp; value.words)
+      {
+        for (const [term, tally] of Object.entries(value.words))
+        {
+          index[term][documentIndex] -= tally
+          index[term].total -= tally;
+        }
+        for (const [term, tally] of Object.entries(value.bagOfWords))
+        {
+          index[term][documentIndex] -= tally
+          index[term].total -= tally;
+        }
+      }
+    });
+  }
+
+  filterBasedOnIndex(index, filter, results, score)
+  {
+    switch (filter.filter)
+    {
+    case &apos;query&apos;:
+      return this.filterQueryImpl(index, filter, results, score, false);
+    case &apos;queryexact&apos;:
+      return this.filterQueryImpl(index, filter, results, score, true);
+    }
+    return results;
+  }
+
+
+  filterQueryImpl(index, filter, results, score, exact)
+  {
+    let final = false;
+    const analysed = this.analyseValue([
+      [filter.values.join(&apos; &apos;), 1]
+    ]);
+    Object.entries(analysed.words)
+      .map((keywordTally, keywordIndex, all) =&gt;
+      {
+        const [keyword, tally] = keywordTally;
+        let resultFragment = index[keyword];
+        if (resultFragment &amp;&amp; resultFragment.total &gt; 0)
+        {
+          results.addKeyword(filter.values[keywordIndex], resultFragment.total);
+          if (!final)
+          {
+            final = {};
+            for (const [result, resultTally] of Object.entries(resultFragment))
+            {
+              if (result !== &apos;total&apos;)
+              {
+                const value = this.values[result];
+                final[result] = score(resultTally,
+                  value.count,
+                  value.maximum,
+                  resultFragment.total,
+                  this.totalWordsTally,
+                  this.values.length,
+                  all.length,
+                  this.maximumDocumentsByTerm) * tally;
+              }
+            }
+          }
+          else
+          {
+            for (let result in final)
+            {
+              if (!(result in resultFragment))
+              {
+                final[result] = undefined;
+              }
+            }
+            for (const [result, resultTally] of Object.entries(resultFragment))
+            {
+              if (result in final)
+              {
+                const value = this.values[result];
+                final[result] *= score(resultTally,
+                  value.count,
+                  value.maximum,
+                  resultFragment.total,
+                  this.totalWordsTally,
+                  this.values.length,
+                  all.length,
+                  this.maximumDocumentsByTerm) * tally;
+              }
+            }
+          }
+        }
+        else
+        {
+          results.addKeyword(filter.values[keywordIndex], 0);
+          if (!this.allowPartialMatch)
+          {
+            final = {};
+
+          }
+        }
+      });
+    Object.entries(analysed.bagOfWords)
+      .map((keywordTally, keywordIndex, all) =&gt;
+      {
+        const [keyword, tally] = keywordTally;
+        let resultFragment = index[keyword];
+        if (resultFragment &amp;&amp; resultFragment.total &gt; 0)
+        {
+          for (const [result, resultTally] of Object.entries(resultFragment))
+          {
+            if (result !== &apos;total&apos;)
+            {
+              const value = this.values[result];
+              final[result] += score(resultTally,
+                value.count,
+                value.maximum,
+                resultFragment.total,
+                this.totalWordsTally,
+                this.values.length,
+                all.length,
+                this.maximumDocumentsByTerm) * tally;
+            }
+          }
+        }
+      });
+    if (final)
+    {
+      if (exact)
+      {
+        exact = new RegExp(analysed.values, &apos;ig&apos;)
+      }
+      for (let [result, resultTally] of Object.entries(final))
+      {
+        if (exact)
+        {
+          try
+          {
+            const match = this.values[result].stemmedFull.match(exact);
+            if (match &amp;&amp; match.length)
+            {
+              resultTally *= match.length
+            }
+          }
+          catch (e)
+          {
+            console.log(e.stack)
+          }
+        }
+        if (resultTally &gt; 0)
+        {
+          results.addHit(result, resultTally);
+        }
+      }
+    }
+  }
+
+  getSortValue(index)
+  {
+    return this.values[index].stemmedFull
+  }
+
+}
+
+module.exports = TextIndex;
+require(&apos;./register&apos;)
+  .add(TextIndex, INDEX_TYPE);
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
